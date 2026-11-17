@@ -1252,7 +1252,7 @@ if(matchMedia('(hover:hover) and (pointer:fine)').matches){
 }
 var el=document.getElementById('typed');
 if(el&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
-    var W=['Creo contenido y me la paso en directo.','Hago streams en Twitch y Kick.','Armo eventos y servidores de Minecraft.','Desarrollo páginas web a medida.','Creando desde 2020, desde México.'],i=0,j=0,del=false;
+    var W=['Creo contenido y me la paso en directo.','Hago streams en Twitch y Kick.','Armo eventos y servidores de Minecraft.','Desarrollo páginas web a medida.','Creando desde 2020, desde México.'],i=0,j=0,del=false;window.__W=W;
     function step(){
         if(document.hidden){setTimeout(step,600);return}
         var w=W[i];
@@ -1362,6 +1362,38 @@ frames.forEach(function(f){
 document.addEventListener('viewchange',function(e){
     if(e.detail!=='proyectos'){frames.forEach(function(f){vis.delete(f);f._ev=0;if(f._on)unload(f)})}
 });
+})();
+</script>
+<style>.lang-btn{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.03);color:inherit;border-radius:999px;padding:6px 12px;font:700 .8rem/1 inherit;letter-spacing:.04em;cursor:pointer}.lang-btn:hover{border-color:#c4343c}
+.rt{justify-self:end;grid-area:visits;display:flex;align-items:center;gap:8px}
+html[lang=en] .pool .site:not(.is-live) .bar::after{content:" · hover to view live"}</style>
+<script>
+/* Idioma ES/EN: español por defecto. Para traducir más textos, agrega pares "español":"inglés" en D. */
+(function(){
+var D={"Inicio": "Home", "Sobre mí": "About me", "Contenido": "Content", "Proyectos": "Projects", "Contacto": "Contact", "Secciones": "Sections", "Visitas": "Visits", "Visitas totales de la página": "Total page visits", "Creador de contenido": "Content creator", "Creo contenido, eventos de Minecraft y más.": "I create content, Minecraft events and more.", "Ver proyectos": "View projects", "Ver contenido": "View content", "Suscriptores en YouTube": "YouTube subscribers", "Seguidores en Twitch": "Twitch followers", "Seguidores en Kick": "Kick followers", "Desarrollo web": "Web development", "Servidores": "Servers", "Hecho en México": "Made in Mexico", "Mis amigos": "My friends", "Creadores que sigo y recomiendo.": "Creators I follow and recommend.", "Logo de Zansumi": "Zansumi logo", "Sobre mí — Zansumi": "About me — Zansumi", "Mis inicios": "My beginnings", "Mis proyectos": "My projects", "¿Qué hago ahora?": "What am I up to now?", "Lo que viene": "What's next", "Páginas web a medida y servidores de Minecraft.": "Custom websites and Minecraft servers.", "Creo páginas web a medida: funcionales, atractivas y fáciles de usar, adaptadas a la identidad de cada cliente. Me escribes tu idea, acordamos secciones y precio, y te entrego tu página publicada.": "I build custom websites: functional, attractive and easy to use, tailored to each client's identity. You send me your idea, we agree on sections and price, and I deliver your published site.", "Portafolio o web": "Portfolio or website", "El precio final depende de las secciones": "Final price depends on the sections", "Se ve bien en celular y PC": "Looks great on mobile and PC", "Las secciones que elijas": "The sections you choose", "Tus colores, logo y textos": "Your colors, logo and text", "Publicada gratis en GitHub Pages": "Published for free on GitHub Pages", "Pedir una comisión": "Request a commission", "Nuevo": "New", "Trabajo reciente": "Recent work", "Novedades, sponsors y proyectos": "News, sponsors and projects", "Equipo, novedades y contenido": "Team, news and content", "Portafolio de diseño gráfico para Minecraft": "Graphic design portfolio for Minecraft", "Portafolio de arte gráfico y proyectos": "Graphic art and projects portfolio", "Servidores de Minecraft": "Minecraft servers", "Creo, configuro y personalizo servidores con plugins, mods y recursos públicos, y tengo conocimientos básicos para crear plugins propios. Mi enfoque: soluciones prácticas que convierten la idea de cada comunidad en una experiencia jugable.": "I create, configure and customize servers with plugins, mods and public resources, and I have basic knowledge to build my own plugins. My approach: practical solutions that turn each community's idea into a playable experience.", "Eventos y servidores de Minecraft": "Minecraft events and servers", "¿Quieres que te desarrolle un evento o una configuración? Trabaja con mi estudio": "Want me to develop an event or a setup for you? Work with my studio", "Eventos de Minecraft a tu medida": "Minecraft events tailored to you", "Configuración de servidores": "Server configuration", "Plugins, mods y sistemas personalizados": "Custom plugins, mods and systems", "Experiencias pensadas para tu comunidad": "Experiences designed for your community", "Trabaja con mi estudio": "Work with my studio", "Ver proyecto": "View project", "Mis directos, videos y clips más recientes.": "My latest streams, videos and clips.", "★ Más popular": "★ Most popular", "Reciente": "Recent", "Toca para reproducir": "Tap to play", "Toca para cargar": "Tap to load", "Reproducir": "Play", "Mi setup": "My setup", "Periféricos": "Peripherals", "Procesador": "Processor", "Placa madre": "Motherboard", "Memoria RAM": "RAM", "Memoria RAM 2": "RAM 2", "Almacenamiento": "Storage", "Tarjeta gráfica": "Graphics card", "Teclado": "Keyboard", "Micrófono": "Microphone", "¿Una comisión, una colaboración o solo saludar? Escríbeme.": "A commission, a collaboration or just saying hi? Write to me.", "Correo": "Email", "Copiar correo": "Copy email", "Enviar correo": "Send email", "Copiar Discord": "Copy Discord", "Ver servidor": "View server", "¡Copiado!": "Copied!", "No se pudo copiar": "Couldn't copy", "Esta página no existe": "This page doesn't exist", "Revisa la dirección o vuelve al inicio.": "Check the address or go back home.", "Ir al inicio": "Go home", "Música": "Music", "Mostrar controles": "Show controls", "Anterior": "Previous", "Siguiente": "Next", "Toca la página para activar la música": "Tap the page to enable music", "© 2026 Zansumi · Hecho en México con mucho Minecraft y café": "© 2026 Zansumi · Made in Mexico with lots of Minecraft and coffee", "Mi setup gaming": "My gaming setup", "Mi trayectoria como creador": "My journey as a creator", "Mis proyectos en Minecraft": "My Minecraft projects", "Zansumi | Creador de contenido": "Zansumi | Content creator", "Ir a Inicio": "Go to Home", "Ir a Sobre mí": "Go to About me", "Ir a Proyectos": "Go to Projects", "Ir a Contenido": "Go to Content", "Ir a Setup": "Go to Setup", "Ir a Contacto": "Go to Contact"},K='lmc-lang',R=document.documentElement,en=false,T=new WeakMap(),obs,b,A=['aria-label','alt','title','placeholder'];
+var SK=/^(SCRIPT|STYLE)$/;
+function n(s){return s.replace(/\s+/g,' ').trim()}
+function t(s){var k=n(s);if(!k)return s;var m=s.match(/^(\s*)[\s\S]*?(\s*)$/);
+if(D[k])return m[1]+D[k]+m[2];
+if(k.indexOf(' | ')>0)return k.split(' | ').map(function(x){return D[x]||x}).join(' | ');return s}
+function node(x){var o=T.get(x);if(o&&x.nodeValue===o.en)return;var e=t(x.nodeValue);if(e!==x.nodeValue){T.set(x,{es:x.nodeValue,en:e});x.nodeValue=e}}
+function attrs(el){if(!el.getAttribute)return;A.forEach(function(a){var v=el.getAttribute(a);if(!v)return;var o=el._o=el._o||{};if(o[a]&&o[a].en===v)return;var e=t(v);if(e!==v){o[a]={es:v,en:e};el.setAttribute(a,e)}})}
+function walk(r){if(r.nodeType===3){if(r.parentNode&&!SK.test(r.parentNode.nodeName))node(r);return}
+if(r.nodeType!==1||SK.test(r.nodeName))return;attrs(r);for(var c=r.firstChild;c;c=c.nextSibling)walk(c)}
+function undo(){var w=document.createTreeWalker(R,4),x,o;while(x=w.nextNode()){o=T.get(x);if(o&&x.nodeValue===o.en)x.nodeValue=o.es}
+document.querySelectorAll('*').forEach(function(el){if(!el._o)return;for(var a in el._o){if(el.getAttribute(a)===el._o[a].en)el.setAttribute(a,el._o[a].es)}})}
+function connect(){obs.observe(R,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:A})}
+obs=new MutationObserver(function(ms){obs.disconnect();ms.forEach(function(m){if(m.type==='characterData')walk(m.target);else if(m.type==='attributes')attrs(m.target);else m.addedNodes.forEach(walk)});if(en)connect()});
+function paint(){b.textContent=en?'ES':'EN';var l=en?'Cambiar a español':'Switch to English';b.setAttribute('aria-label',l);b.title=l}
+function set(on){en=on;R.lang=on?'en':'es';try{localStorage.setItem(K,on?'en':'es')}catch(e){}
+if(on){walk(R);connect()}else{obs.disconnect();undo()}if(window.__W&&TE){window.__W.splice.apply(window.__W,[0,window.__W.length].concat(on?TY:TE))}paint()}
+b=document.createElement('button');b.type='button';b.className='lang-btn';
+var vs=document.getElementById('visits');
+if(vs&&vs.parentNode){var w=document.createElement('div');w.className='rt';vs.parentNode.insertBefore(w,vs);w.appendChild(vs);w.appendChild(b)}else document.body.appendChild(b);
+var TY=['I create content and spend my time live.','I stream on Twitch and Kick.','I build Minecraft events and servers.','I develop custom websites.','Creating since 2020, from Mexico.'],TE=window.__W&&window.__W.slice();
+b.addEventListener('click',function(){set(!en)});
+var s=null;try{s=localStorage.getItem(K)}catch(e){}
+paint();if(s==='en')set(true);
 })();
 </script>
 </body>
