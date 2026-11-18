@@ -708,6 +708,7 @@ footer{border-top-color:rgba(179,38,45,.35)}
 .lang-btn:focus-visible{outline:2px solid var(--silver)}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
+<link rel="preconnect" href="https://abacus.jasoncameron.dev" crossorigin>
 </head>
 <body>
 
@@ -1186,12 +1187,14 @@ mark();sync();
 <script>
 /* ============ CONTADOR DE VISITAS (Abacus, gratis) ============ */
 (function(){
-var NS='zansumilmc.github.io',KEY='zansumi-visitas';
+var NS='zansumi.github.io',KEY='zansumi-visitas';
 var base='https://abacus.jasoncameron.dev';
 var el=document.getElementById('visitsNum'),shown=0;
+try{var c0=parseInt(localStorage.getItem('zv_last'),10);if(c0>0){shown=c0;el.textContent=c0.toLocaleString('es-MX')}}catch(e){}
 function fmt(n){return n.toLocaleString('es-MX')}
 function animate(to){
     var from=shown,t0=performance.now();shown=to;
+    try{localStorage.setItem('zv_last',String(to))}catch(e){}
     (function step(t){
         var k=Math.min((t-t0)/700,1);
         el.textContent=fmt(Math.round(from+(to-from)*k));
