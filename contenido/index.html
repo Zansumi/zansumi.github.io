@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<script>document.documentElement.classList.add('js');</script>
+<script>(function(){var n=navigator,c=n.connection||{},q=location.search;if(q.indexOf('full')<0&&(q.indexOf('lite')>-1||n.hardwareConcurrency<=2||n.deviceMemory<=2||c.saveData))document.documentElement.classList.add('lite')})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<base href="/">
+<title>Contenido | Zansumi</title>
+<meta name="description" content="Mis directos, videos y clips más recientes en Twitch, Kick, YouTube y TikTok.">
+<meta name="theme-color" content="#0d0e10">
+<link rel="canonical" href="https://zansumi.github.io/contenido/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Zansumi">
+<meta property="og:title" content="Contenido | Zansumi">
+<meta property="og:description" content="Mis directos, videos y clips más recientes en Twitch, Kick, YouTube y TikTok.">
+<meta property="og:url" content="https://zansumi.github.io/contenido/">
+<meta property="og:image" content="https://zansumi.github.io/assets/banners/baner2.png?v=2">
+<meta property="og:image:secure_url" content="https://zansumi.github.io/assets/banners/baner2.png?v=2">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="Banner de Zansumi">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contenido | Zansumi">
+<meta name="twitter:description" content="Mis directos, videos y clips más recientes en Twitch, Kick, YouTube y TikTok.">
+<meta name="twitter:image" content="https://zansumi.github.io/assets/banners/baner2.png?v=2">
+<meta name="twitter:image:alt" content="Banner de Zansumi">
+<meta name="twitter:site" content="@zansum1">
+<link rel="icon" type="image/png" href="assets/avatars/logonwevo2.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============ PALETA (de tu imagen) ============ */
+:root{
+    --ink:#0d0e10;      /* fondo */
+    --coal:#2a2c30;     /* bordes y superficies */
+    --ash:#8b9096;     /* texto secundario */
+    --red:#b3262d;      /* acento vivo */
+    --crimson:#8c1d24;  /* acento base / botones */
+    --panel:rgba(16,17,20,.72);--silver:#c7ccd2;    /* tarjetas: vidrio negro */
+    --paper:#f4f5f7;    /* texto principal */
+    --soft:#b9bec5;     /* texto de apoyo */
+    --display:'Bricolage Grotesque','Segoe UI',sans-serif;
+    --body:'DM Sans','Segoe UI',sans-serif;
+    --gap:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{background:#000;color:var(--paper);font-family:var(--body);line-height:1.55;display:grid;grid-template-rows:auto 1fr auto;height:100dvh;overflow:hidden}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:6px}
+img{display:block}
+::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-thumb{background:var(--coal);border-radius:8px}
+
+/* ============ FONDO ============ */
+.stage{position:fixed;inset:0;z-index:-1;background:#000;overflow:hidden}
+.stage>img,.stage .vid{position:absolute;inset:0;width:100%;height:100%}
+.stage>img{object-fit:cover;opacity:.55}
+.stage .vid{opacity:0;transition:opacity 1.2s}.stage .vid.on{opacity:.62}
+.stage .vid video{width:100%;height:100%;object-fit:cover}
+.stage::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(0,0,0,0) 0%,rgba(0,0,0,.35) 55%,rgba(0,0,0,.92) 100%)}
+.stage .orb{position:absolute;border-radius:50%;pointer-events:none;will-change:transform}
+.stage .o1{width:42vw;height:42vw;background:radial-gradient(circle,rgba(140,29,36,.34),transparent 68%);top:-8vw;left:-6vw;animation:drift1 24s ease-in-out infinite alternate}
+.stage .o2{width:36vw;height:36vw;background:radial-gradient(circle,rgba(179,38,45,.22),transparent 68%);bottom:-10vw;right:-6vw;animation:drift2 28s ease-in-out infinite alternate}
+
+/* ============ BARRA SUPERIOR (simétrica: logo | pestañas | visitas) ============ */
+.top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;padding:12px 24px;border-bottom:1px solid var(--coal);background:rgba(0,0,0,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:50;position:relative}
+.logo{justify-self:start;display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-weight:800;font-size:1.25rem;letter-spacing:-.02em}
+.logo img{width:30px;height:30px;border-radius:50%;object-fit:cover}
+.tabs{display:flex;gap:4px;justify-content:center}
+.tabs a{padding:8px 14px;border-radius:8px;text-decoration:none;color:var(--ash);font-size:.92rem;font-weight:500;white-space:nowrap;transition:color .2s,background .2s}
+.tabs a:hover{color:var(--paper)}
+.tabs a[aria-current="page"]{color:#fff;background:rgba(0,0,0,.6);box-shadow:inset 0 -2px 0 var(--red),0 8px 16px -10px var(--red);text-shadow:0 0 10px rgba(179,38,45,.8)}
+.visits{justify-self:end;display:flex;align-items:center;gap:8px;padding:6px 12px;border:1px solid var(--coal);border-radius:999px;font-size:.82rem;color:var(--ash);white-space:nowrap}
+.visits b{color:var(--paper);font-family:var(--display);font-variant-numeric:tabular-nums;min-width:1ch}
+.visits .dot{width:7px;height:7px;border-radius:50%;background:var(--red);animation:blink 1.6s ease-in-out infinite}
+@keyframes blink{50%{opacity:.25}}
+
+/* ============ VISTAS (pestañas) ============ */
+main{overflow-y:auto;overflow-x:hidden;position:relative}
+.panel{min-height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:26px;padding:28px 24px 84px}
+.panel>*{width:100%;max-width:1120px}
+.panel.show{animation:enter .28s ease-out}
+@keyframes enter{from{opacity:0;transform:translateY(8px)}}
+.head{text-align:center}
+.head h2{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4.2vw,3rem);line-height:1;letter-spacing:-.035em}
+.head p{margin:10px auto 0;max-width:52ch;color:var(--soft)}
+.head p.wide{max-width:78ch;font-size:.95rem}.head p+p{margin-top:8px}
+
+/* ============ BOTONES ============ */
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:11px 24px;border-radius:10px;border:1px solid var(--coal);color:var(--paper);text-decoration:none;font:500 .95rem var(--body);cursor:pointer;background:transparent;transition:background .2s,border-color .2s}
+.btn:hover{border-color:var(--ash)}
+.btn.solid{background:var(--crimson);border-color:var(--crimson)}
+.btn.solid:hover{background:var(--red);border-color:var(--red)}
+.row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+
+/* ============ TARJETAS ============ */
+.card{background:var(--panel);border:1px solid var(--coal);border-radius:12px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:border-color .25s,box-shadow .25s}
+a.card{text-decoration:none;color:inherit}
+a.card:hover{border-color:var(--red);box-shadow:0 0 0 1px var(--red),0 0 24px rgba(179,38,45,.35)}
+.card h3{font-family:var(--display);font-size:1.05rem;font-weight:700;letter-spacing:-.01em}
+.card p{color:var(--soft);font-size:.92rem}
+.tiles{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--gap);--n:5}
+.tiles.n4{--n:4}
+.tiles.n6{--n:6}
+.tiles>*{flex:0 0 calc((100% - (var(--n) - 1)*var(--gap))/var(--n));min-width:0}
+.cap{text-align:center;color:var(--ash);font-size:.85rem;margin-bottom:12px}
+
+/* ============ INICIO ============ */
+.hero{align-items:center;text-align:center;gap:0}
+.hero .ava{width:76px;height:76px;border-radius:50%;object-fit:cover;border:2px solid var(--crimson);background:var(--ink)}
+.hero h1{display:flex;justify-content:center;font-family:var(--display);font-weight:800;font-size:clamp(3.4rem,14vw,9.5rem);line-height:.88;letter-spacing:-.06em;margin-top:18px}
+.hero h1 .ol{color:transparent;-webkit-text-stroke:clamp(1.5px,.32vw,3px) var(--red)}
+.hero .kick{text-shadow:0 2px 14px #000;margin-top:16px;font-family:var(--display);font-weight:700;font-size:clamp(1.05rem,2.2vw,1.5rem);max-width:30ch;line-height:1.25}
+.hero .row{margin-top:22px}
+.socials{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+.social{width:44px;height:44px;display:grid;place-items:center;border:1px solid var(--coal);border-radius:10px;background:rgba(0,0,0,.6);text-decoration:none;transition:border-color .2s,transform .2s,box-shadow .2s}
+.social:hover{border-color:var(--red);transform:translateY(-2px)}
+.social img{width:22px;height:22px;object-fit:contain}
+.social .fb{font-family:var(--display);font-weight:800;font-size:.95rem}
+.counters{display:flex;justify-content:center;margin-top:30px}
+.counter{padding:2px 30px;text-align:center}
+.counter+.counter{border-left:1px solid var(--coal)}
+.counter strong{display:block;font-family:var(--display);font-size:1.9rem;line-height:1.1}
+.counter>span{color:var(--ash);font-size:.82rem}
+.hero-top{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:calc(100dvh - 190px)}
+.friends-block{margin-top:34px}
+.friends-block .head h2{font-size:clamp(1.6rem,3.2vw,2.3rem)}
+.friends-block .tiles{margin-top:22px}
+
+/* ============ HISTORIA ============ */
+.lead{text-align:center;font-family:var(--display);font-weight:700;font-size:clamp(1.3rem,2.8vw,2rem);line-height:1.2;letter-spacing:-.02em;max-width:42ch;margin:0 auto}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+.trio .card{padding:24px 22px;display:flex;flex-direction:column;gap:8px}
+.trio .row{justify-content:flex-start;margin-top:auto;padding-top:10px}
+.trio .btn{padding:8px 16px;font-size:.85rem}
+.foot-note{text-align:center;color:var(--ash);font-size:.92rem}
+
+/* ============ COMISIONES (webs) ============ */
+.sites{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);max-width:980px!important;margin:0 auto}
+.site{overflow:hidden}
+.shot{position:relative;border-bottom:1px solid var(--coal)}
+.bar{padding:6px 12px;background:#000;color:var(--ash);font-size:.7rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fview{position:relative;aspect-ratio:16/9;overflow:hidden;background:#000 var(--logo,none) center/22% no-repeat}
+.fview iframe{position:absolute;left:0;top:0;width:1440px;height:810px;border:0;transform-origin:0 0;pointer-events:none}
+.new{position:absolute;top:34px;left:10px;z-index:2;padding:3px 10px;border-radius:999px;background:var(--red);color:#fff;font:700 .7rem var(--body)}
+.site .meta{padding:10px 14px 12px;text-align:center}
+.site .meta p{margin-top:2px;font-size:.85rem}
+
+/* ============ PRECIOS ============ */
+.pricing{display:grid;grid-template-columns:1fr 1.1fr 1fr;gap:var(--gap);align-items:stretch}
+.pricing .card{padding:26px 24px}
+.pricing h3{margin-bottom:14px}
+.list{list-style:none;display:grid;gap:10px;color:var(--soft);font-size:.93rem}
+.list li{display:flex;gap:10px;align-items:flex-start}
+.list li::before{content:"";flex:none;width:7px;height:7px;margin-top:.5em;background:var(--red);border-radius:2px}
+.steps{list-style:none;counter-reset:s;display:grid;gap:14px;color:var(--soft);font-size:.93rem}
+.steps li{counter-increment:s;display:flex;gap:12px;align-items:flex-start}
+.steps li::before{content:counter(s);flex:none;width:24px;height:24px;display:grid;place-items:center;border:1px solid var(--coal);border-radius:50%;font:700 .78rem var(--display);color:var(--paper)}
+.price{border-color:var(--crimson)!important;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px}
+.price .what{color:var(--soft)}
+.price .amt{font-family:var(--display);font-weight:800;font-size:clamp(3rem,6vw,4.4rem);line-height:1;letter-spacing:-.05em;margin-top:6px}
+.price .amt small{font-size:1.1rem;letter-spacing:0;color:var(--ash);font-weight:500;margin-left:6px}
+.price .note{color:var(--ash);font-size:.85rem;margin-bottom:16px}
+
+/* ============ PROYECTOS ============ */
+.proj{padding:20px 10px 16px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px}
+.proj .thumb{width:96px;height:96px;display:grid;place-items:center}
+.proj img{width:100%;height:100%;object-fit:contain}
+.proj h3{font-size:.92rem}
+.mark{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font:800 1.3rem var(--display);border:1px solid var(--coal)}
+
+/* ============ CONTENIDO ============ */
+.vids{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+.clip{padding:14px}
+.clip .tag{display:flex;justify-content:center;margin-bottom:10px}
+.chip{display:inline-block;padding:3px 12px;border-radius:999px;border:1px solid var(--coal);color:var(--ash);font:700 .72rem var(--body)}
+.chip.pop{background:var(--red);border-color:var(--red);color:#fff;box-shadow:0 0 12px rgba(179,38,45,.8);animation:ring 2.2s ease-in-out infinite}
+.clip.hot{border-color:var(--red);box-shadow:0 0 0 1px var(--red),0 0 24px rgba(179,38,45,.35)}
+.clip iframe{width:100%;border:0;border-radius:8px;background:#000;display:block}
+.vids iframe{aspect-ratio:16/9}
+.tts{display:flex;justify-content:center;gap:var(--gap);flex-wrap:wrap}
+.tts .clip{width:min(340px,100%)}
+.tts iframe,.tts .facade{height:640px}
+
+/* ============ CONTACTO ============ */
+.cgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--gap);max-width:760px!important;margin:0 auto}
+.cc{padding:28px 22px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px}
+.cico{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--coal);margin-bottom:8px;font:800 1.3rem var(--display)}
+.cico svg{width:26px;height:26px}.cico img{width:26px;height:26px;object-fit:contain}
+.cc .lbl{color:var(--ash);font-size:.8rem}
+.cval{font-family:var(--display);font-weight:700;font-size:1.1rem;overflow-wrap:anywhere}
+.cc .row{margin-top:14px}
+.btn.ok{border-color:var(--paper)}
+
+/* ============ TEXTO A LA IZQUIERDA + TRABAJOS A LA DERECHA ============ */
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:34px;align-items:start}
+.split .side{position:sticky;top:6px;text-align:left}
+.split .side h2{font-size:clamp(2.1rem,4vw,3.1rem)}
+.split .side p.wide{margin:14px 0 0;max-width:none;font-size:1.08rem;line-height:1.65}
+.split .side p.wide+p.wide{margin-top:10px}
+.split .tiles{--n:4;justify-content:flex-start}
+.split .sites{max-width:none!important;margin:0;grid-template-columns:repeat(2,minmax(0,1fr))}
+
+.plink{display:flex;flex-direction:column;align-items:center;gap:12px;text-decoration:none;color:inherit;width:100%}
+.proj{transition:border-color .25s,box-shadow .25s}
+.proj:hover{border-color:var(--red);box-shadow:0 0 0 1px var(--red),0 0 24px rgba(179,38,45,.35)}
+.proj .btn{padding:7px 16px;font-size:.82rem;margin-top:auto}
+
+/* ============ SOBRE MI (texto corrido) ============ */
+.panel.bleed{padding:0 0 72px;gap:0;justify-content:stretch}
+.panel.bleed>*{max-width:none}
+.card.story{display:block;flex:1 0 auto;margin:0;border-radius:0;border-width:1px 0 0;padding:clamp(28px,5vw,64px) clamp(20px,7vw,110px);text-align:left;background:rgba(0,0,0,.46);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+@media(min-width:1000px){.card.story{column-count:2;column-gap:72px}.card.story p{orphans:3;widows:3}}
+.card.story h2{column-span:all;font-family:var(--display);font-weight:800;font-size:clamp(2rem,4.2vw,3rem);letter-spacing:-.035em;line-height:1;margin-bottom:22px;text-shadow:0 0 22px rgba(179,38,45,.35)}
+.card.story h3{font-family:var(--display);font-size:1.3rem;margin:28px 0 8px;letter-spacing:-.01em}
+.card.story h3:first-child{margin-top:0}
+.card.story h3{break-after:avoid}
+.card.story p{color:#e6e3de;font-size:1.08rem;line-height:1.75;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.card.story p+p{margin-top:12px}
+.card.story strong{color:var(--paper);font-weight:700}
+.card.story .closing{color:var(--paper);font-weight:500}
+.hl{color:#fff;font-weight:500;text-decoration:none;border-bottom:2px solid var(--red);transition:background .2s}
+.hl:hover{background:var(--crimson);border-radius:3px}
+.sh{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,3.4vw,2.5rem);line-height:1;letter-spacing:-.035em;text-shadow:0 0 22px rgba(179,38,45,.35)}
+.split+.split{padding-top:30px;border-top:1px solid var(--coal)}
+.split .side .price{margin-top:22px;padding:22px 20px}
+.split .side .price .amt{font-size:clamp(2.4rem,4vw,3.2rem)}
+.split .side .price .note{margin-bottom:8px}
+.split .side .price .list{align-self:stretch;text-align:left;margin:4px 0 14px}
+@media(max-width:1000px){.split .side .price{max-width:420px;margin-left:auto;margin-right:auto}}
+
+/* ============ FACHADAS (carga al tocar) + EMOTES ============ */
+.facade{position:relative;width:100%;border:0;border-radius:8px;background:linear-gradient(160deg,#17191c,#000) center/cover no-repeat;cursor:pointer;display:block;overflow:hidden;color:#fff;font:inherit}
+.facade::after{content:"";position:absolute;left:50%;top:50%;width:62px;height:62px;margin:-31px 0 0 -31px;border-radius:50%;background:var(--crimson) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M8 5v14l11-7z'/%3E%3C/svg%3E") center/28px no-repeat;box-shadow:0 0 22px rgba(179,38,45,.6);transition:transform .2s}
+.facade:hover::after{transform:scale(1.1)}
+.facade span{position:absolute;left:0;right:0;bottom:10px;text-align:center;font-size:.8rem;color:var(--soft);text-shadow:0 1px 6px #000}
+.vids .facade,.lives .facade{aspect-ratio:16/9}
+.lives{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--gap)}
+.lives iframe{aspect-ratio:16/9}
+.emotes{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.emotes img{position:absolute;left:0;top:0;opacity:.9;will-change:transform;user-select:none;-webkit-user-drag:none}
+@keyframes bob{50%{transform:translateY(-6px)}}
+.panel.show .hero-top>:not(.ava){animation:rise .6s cubic-bezier(.2,.8,.2,1) both}
+.hero-top>:nth-child(3){animation-delay:.08s!important}.hero-top>:nth-child(4){animation-delay:.16s!important}.hero-top>:nth-child(5){animation-delay:.24s!important}.hero-top>:nth-child(6){animation-delay:.32s!important}
+
+/* ============ AMIGOS ============ */
+.friend{padding:22px 12px 18px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px}
+.friend img{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid var(--coal);transition:border-color .2s}
+.friend:hover img{border-color:var(--red)}
+
+/* ============ SETUP ============ */
+.part{padding-bottom:14px;text-align:center;overflow:hidden}
+.part .thumb{aspect-ratio:4/3;display:grid;place-items:center;background:#000;border-bottom:1px solid var(--coal);margin-bottom:12px}
+.part .thumb img{width:100%;height:100%;object-fit:contain;padding:12px}
+.part .lbl{display:block;color:var(--ash);font-size:.76rem}
+.part h3{font-size:.9rem;padding:2px 10px 0}
+.part p{font-size:.78rem;padding:0 10px;min-height:1.2em}
+
+/* ============ 404 ============ */
+.nf{text-align:center;align-items:center}
+.nf .big{font-family:var(--display);font-weight:800;font-size:clamp(5rem,20vw,11rem);line-height:.9;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:3px var(--red)}
+
+/* ============ ENTRADA ============ */
+.enter{display:none;position:fixed;inset:0;z-index:1000;place-items:center;text-align:center;padding:24px;cursor:pointer;background:rgba(13,14,16,.7);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);transition:opacity .8s}
+.js .enter{display:grid}
+.enter span{font-family:var(--display);font-weight:700;font-size:clamp(1.1rem,3vw,1.5rem);animation:breathe 2.6s ease-in-out infinite}
+.enter.out{opacity:0;pointer-events:none}
+@keyframes breathe{0%,100%{opacity:.5}50%{opacity:1}}
+
+/* ============ REPRODUCTOR ============ */
+.player{position:fixed;left:14px;bottom:14px;z-index:120;display:flex;align-items:center;gap:6px;padding:5px 8px;border-radius:999px;background:rgba(0,0,0,.8);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--coal);transition:border-color .2s}
+.player:hover,.player.open,.player:focus-within{border-color:var(--ash)}
+.player button{width:28px;height:28px;display:grid;place-items:center;border:1px solid var(--coal);border-radius:50%;background:transparent;color:var(--paper);cursor:pointer;transition:background .2s,border-color .2s}
+.player button:hover{background:var(--crimson);border-color:var(--crimson)}
+.player svg{width:13px;height:13px;fill:currentColor;pointer-events:none}
+.eq{display:flex;align-items:flex-end;gap:2px;height:16px;padding:0 4px;background:none!important;border:0!important;width:auto!important}
+.eq i{width:3px;height:3px;border-radius:2px;background:var(--red)}
+.player.playing .eq i{animation:eq .8s ease-in-out infinite alternate}
+.player.playing .eq i:nth-child(2){animation-delay:.2s}.player.playing .eq i:nth-child(3){animation-delay:.4s}.player.playing .eq i:nth-child(4){animation-delay:.1s}
+@keyframes eq{from{height:3px}to{height:16px}}
+.player.wait #pplay{border-color:var(--red)}
+.more{display:flex;align-items:center;gap:6px}
+.ptitle{display:none;max-width:130px;font-size:.78rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 4px;color:var(--soft)}
+#pvol{width:70px;accent-color:var(--red);cursor:pointer}
+@media(min-width:1300px){.ptitle{display:block}}
+.pl-pop{display:none;position:absolute;left:0;bottom:calc(100% + 10px);width:min(340px,88vw);padding:12px;border-radius:16px;text-align:left;background:rgba(0,0,0,.96);border:1px solid var(--coal)}
+.player.list .pl-pop{display:block}
+.pnow{display:flex;gap:14px;align-items:center;padding:12px;border-radius:12px;background:#000;border:1px solid var(--coal);margin-bottom:10px}
+.pnow small{color:var(--ash)}.pnow strong{display:block;font-family:var(--display);font-size:1rem;line-height:1.15;margin:2px 0 6px}
+.vinyl{flex:none;width:56px;height:56px;border-radius:50%;background:radial-gradient(circle,var(--crimson) 0 16%,var(--ink) 17% 22%,#22252a 23% 100%);border:1px solid var(--coal)}
+.player.playing .vinyl{animation:rot 3s linear infinite}@keyframes rot{to{transform:rotate(360deg)}}
+.pctl{display:flex;gap:8px;flex-wrap:wrap}
+.pl-pop .pctl button{width:auto;height:auto;border-radius:999px;padding:4px 12px;font:.8rem var(--body)}
+#plist{list-style:none;display:grid;gap:6px;max-height:240px;overflow:auto}
+#plist li{display:flex;gap:12px;align-items:center;padding:9px 12px;border-radius:10px;border:1px solid var(--coal);background:var(--panel);cursor:pointer;font-size:.88rem;transition:border-color .2s}
+#plist li:hover{border-color:var(--ash)}
+#plist li.on{border-color:var(--red)}
+#plist b{font-family:var(--display);color:var(--red);min-width:2ch}
+body.locked{overflow:hidden}
+
+footer{text-align:center;padding:10px 20px;color:var(--ash);font-size:.8rem;border-top:1px solid var(--coal);background:rgba(0,0,0,.75)}
+
+/* ============ NEÓN (misma paleta) ============ */
+@property --a{syntax:'<angle>';initial-value:0deg;inherits:false}
+:root{--neon:0 0 8px rgba(179,38,45,.75),0 0 22px rgba(179,38,45,.45),0 0 48px rgba(140,29,36,.3)}
+@keyframes spin{to{--a:360deg}}
+@keyframes glow{0%,100%{filter:drop-shadow(0 0 5px rgba(179,38,45,.55))}50%{filter:drop-shadow(0 0 16px rgba(179,38,45,.95))}}
+@keyframes flick{0%,90%,100%{opacity:1}91%{opacity:.55}92%{opacity:1}95%{opacity:.7}96%{opacity:1}}
+@keyframes ring{0%,100%{box-shadow:0 0 8px rgba(179,38,45,.5)}50%{box-shadow:0 0 22px rgba(179,38,45,.95),0 0 44px rgba(140,29,36,.4)}}
+@keyframes drift1{to{transform:translate(16vw,12vh)}}
+@keyframes drift2{to{transform:translate(-14vw,-10vh)}}
+@keyframes scan{from{background-position:-40% 0}to{background-position:140% 0}}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}}
+@keyframes shine{to{transform:translateX(320%) skewX(-20deg)}}
+.top::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;pointer-events:none;background:linear-gradient(90deg,transparent,var(--red),transparent) no-repeat;background-size:30% 100%;animation:scan 5s linear infinite;filter:drop-shadow(0 0 6px var(--red))}
+.hero h1 .ol{animation:glow 3.2s ease-in-out infinite,flick 8s infinite}
+.hero .ava{animation:ring 3s ease-in-out infinite,bob 5s ease-in-out infinite}
+.head h2{text-shadow:0 0 22px rgba(179,38,45,.35)}
+.counter strong{text-shadow:0 0 14px rgba(179,38,45,.5)}
+.social:hover{border-color:var(--red);box-shadow:0 0 16px rgba(179,38,45,.55)}
+.btn:hover{border-color:var(--red)}
+.btn.solid{position:relative;overflow:hidden;box-shadow:0 0 14px rgba(179,38,45,.4);transition:background .2s,box-shadow .25s}
+.btn.solid:hover{box-shadow:var(--neon)}
+.btn.solid::after{content:"";position:absolute;top:0;left:-60%;width:35%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);pointer-events:none}
+.btn.solid:hover::after{animation:shine .7s}
+.new{box-shadow:0 0 12px rgba(179,38,45,.8);animation:ring 2.2s ease-in-out infinite}
+.price{position:relative;box-shadow:0 0 34px rgba(179,38,45,.18)}
+.price::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:2px;pointer-events:none;background:conic-gradient(from var(--a),transparent 58%,var(--red) 85%,#fff 96%,transparent);animation:spin 3.5s linear infinite;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.price .amt{text-shadow:0 0 24px rgba(179,38,45,.55)}
+.visits .dot,.eq i{box-shadow:0 0 8px var(--red)}
+.panel.show :is(.tiles,.sites,.pricing,.trio,.vids,.lives,.tts,.cgrid)>*{animation:rise .5s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0)*45ms)}
+/* botón discreto: siguiente página */
+.next{position:fixed;right:14px;bottom:14px;z-index:120;display:flex;align-items:center;gap:6px;padding:7px 12px 7px 14px;border-radius:999px;border:1px solid var(--coal);background:rgba(0,0,0,.8);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--soft);text-decoration:none;font-size:.82rem;transition:border-color .2s,color .2s,box-shadow .25s}
+.next svg{width:14px;height:14px;transition:transform .2s}
+.next:hover{color:#fff;border-color:var(--red);box-shadow:0 0 16px rgba(179,38,45,.5)}
+.next:hover svg{transform:translateX(3px)}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:1000px){.tiles,.tiles.n4{--n:4}.tiles.n6{--n:3}.sites{grid-template-columns:repeat(2,1fr)}.pricing{grid-template-columns:1fr}.price{order:-1}}
+@media(max-width:860px){
+    .top{grid-template-columns:1fr auto;grid-template-areas:"logo visits" "tabs tabs";gap:8px 12px;padding:10px 14px}
+    .logo{grid-area:logo}.visits{grid-area:visits}
+    .tabs{grid-area:tabs;justify-content:flex-start;overflow-x:auto;margin:0 -6px;padding:0 6px}
+    .tiles,.tiles.n4{--n:3}.trio{grid-template-columns:1fr}.vids,.lives{grid-template-columns:1fr;max-width:560px;margin:0 auto}
+    .panel{padding:22px 16px 84px}
+}
+@media(max-width:600px){.tiles,.tiles.n4,.tiles.n6{--n:2}.sites{grid-template-columns:1fr}.counter{padding:2px 16px}.counter strong{font-size:1.5rem}.hero h1{font-size:clamp(3rem,17vw,5rem)}#pvol{width:60px}}
+@media(max-width:1000px){.split{grid-template-columns:1fr;gap:22px}.split .side{position:static;text-align:center}.split .side p.wide{margin:12px auto 0}.split .side p.wide+p.wide{margin-top:10px}}
+@media(max-width:860px){.split .tiles{--n:3}.cgrid{grid-template-columns:1fr}}
+@media(max-width:600px){.split .tiles{--n:2}.split .sites{grid-template-columns:1fr}}
+@media(max-width:860px),(pointer:coarse){
+    .card,.top,.player,.next{backdrop-filter:none;-webkit-backdrop-filter:none}
+    .card{background:rgba(0,0,0,.8)}.top{background:rgba(0,0,0,.92)}
+    .stage .orb{animation:none}
+    .top::after,.price::before,.btn.solid::after{display:none}
+    .hero h1 .ol,.hero .ava,.new,.chip.pop{animation:none}
+    .fview{aspect-ratio:16/6}.fview iframe{display:none}
+    .card.story{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(0,0,0,.74)}
+}
+
+/* ============ REDISEÑO: minimalista · plata, blanco y rojo oscuro ============ */
+:root{--line:rgba(255,255,255,.08);--ease:cubic-bezier(.22,1,.36,1);--maxw:1240px}
+body{background:#08090a}
+::selection{background:var(--crimson);color:#fff}
+::-webkit-scrollbar-thumb{background:#33363b}
+.stage>img{opacity:.32;filter:grayscale(.55) contrast(1.05)}
+.stage .vid.on{opacity:.38}.stage .vid video{filter:grayscale(.5)}
+.stage::after{background:radial-gradient(ellipse at 50% 35%,rgba(8,9,10,0) 0%,rgba(8,9,10,.55) 60%,#08090a 100%)}
+.stage .orb{opacity:.5}
+.top{background:rgba(10,11,13,.78);border-bottom:1px solid var(--line);padding:12px clamp(16px,3vw,40px)}
+.top::after{display:none}
+.logo{font-weight:700;letter-spacing:-.01em}
+.logo img{border:1px solid var(--line)}
+.tabs a{border-radius:999px;padding:8px 16px;font-size:.9rem;position:relative}
+.tabs a:hover{color:#fff;background:rgba(255,255,255,.05)}
+.tabs a[aria-current="page"]{color:#fff;background:rgba(255,255,255,.08);box-shadow:none;text-shadow:none}
+.tabs a[aria-current="page"]::after{content:"";position:absolute;left:50%;bottom:3px;width:14px;height:2px;margin-left:-7px;border-radius:2px;background:var(--red);animation:grow .4s var(--ease)}
+@keyframes grow{from{width:0;margin-left:0;opacity:0}}
+.visits{border-color:var(--line);background:rgba(255,255,255,.03)}
+.visits .dot,.eq i{box-shadow:none}
+.panel>*{max-width:var(--maxw)}
+.panel.show{animation:enter .45s var(--ease)}
+.head h2,.sh,.card.story h2,.price .amt,.counter strong{text-shadow:none}
+.head h2{font-weight:700;letter-spacing:-.04em}
+.head p{color:var(--ash)}
+.cap{text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;font-weight:700;color:var(--ash);display:flex;align-items:center;gap:14px}
+.cap::before,.cap::after{content:"";flex:1;height:1px;background:var(--line)}
+/* tarjetas */
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;backdrop-filter:none;-webkit-backdrop-filter:none;contain:layout style;transition:transform .45s var(--ease),border-color .3s,background .3s,box-shadow .45s var(--ease)}
+a.card:hover,.proj:hover{border-color:rgba(199,204,210,.32);background:rgba(24,25,29,.82);box-shadow:0 18px 40px -22px #000;transform:translateY(-4px)}
+.clip.hot,.clip.hot:hover{border-color:rgba(179,38,45,.55);box-shadow:none}
+.card.story{background:rgba(10,11,13,.6);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.card.story p{text-shadow:none;color:#d4d7dc}
+.hl{border-bottom:1px solid var(--red)}.hl:hover{background:rgba(179,38,45,.35)}
+/* botones */
+.btn{border-radius:999px;border-color:rgba(199,204,210,.25);transition:transform .35s var(--ease),background .25s,border-color .25s,box-shadow .35s}
+.btn:hover{border-color:var(--silver);transform:translateY(-2px);background:rgba(255,255,255,.05)}
+.btn.solid{background:var(--crimson);border-color:var(--crimson);box-shadow:none}
+.btn.solid:hover{background:var(--red);border-color:var(--red);box-shadow:0 10px 26px -10px rgba(179,38,45,.8)}
+.btn.solid::after{background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent)}
+.btn:active{transform:translateY(0) scale(.98)}
+/* hero */
+.hero .ava{border:1px solid rgba(199,204,210,.45);animation:bob 6s ease-in-out infinite;box-shadow:0 0 0 6px rgba(255,255,255,.04)}
+.hero h1{font-weight:800}
+.hero h1 span:first-child{background:linear-gradient(100deg,#fff 20%,#9aa0a8 45%,#fff 70%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheen 7s linear infinite}
+@keyframes sheen{to{background-position:-220% 0}}
+.hero h1 .ol{-webkit-text-stroke:clamp(1.5px,.28vw,2.5px) var(--red);animation:none;filter:none}
+.hero .kick{color:var(--soft);font-weight:500;text-shadow:none}
+.social{border-radius:12px;border-color:var(--line);background:rgba(255,255,255,.03);transition:transform .35s var(--ease),border-color .25s,background .25s}
+.social:hover{border-color:rgba(199,204,210,.5);box-shadow:none;background:rgba(255,255,255,.08);transform:translateY(-3px)}
+.counter+.counter{border-color:var(--line)}
+.counter strong{background:linear-gradient(#fff,#a9aeb6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.friend img{border-color:var(--line);transition:border-color .3s,transform .45s var(--ease)}
+.friend:hover img{border-color:var(--silver);transform:scale(1.06)}
+/* precios */
+.price{border-color:rgba(179,38,45,.5)!important;box-shadow:none}
+.price::before{display:none}
+.list li::before{background:var(--silver);border-radius:50%;width:5px;height:5px;margin-top:.7em}
+.steps li::before{border-color:var(--line)}
+/* chips y badges */
+.chip{border-color:var(--line)}
+.chip.pop{background:var(--crimson);border-color:var(--crimson);box-shadow:none;animation:none}
+.new{background:var(--crimson);box-shadow:none;animation:none}
+/* previews web */
+.shot{border-color:var(--line)}
+.bar{background:#0a0b0d}
+.fview{background:#0b0c0e var(--logo,none) center/auto 55% no-repeat}
+.site .fview iframe{transition:opacity .6s}
+.site:hover .fview iframe{transform-origin:0 0}
+/* previews de contenido */
+.clip iframe,.facade{border-radius:10px}
+.lives iframe{min-height:220px}
+.facade::after{background-color:var(--crimson);box-shadow:none;transition:transform .35s var(--ease),background-color .25s}
+.facade:hover::after{background-color:var(--red);transform:scale(1.12)}
+.facade{transition:filter .3s}.facade:hover{filter:brightness(1.12)}
+/* reproductor y navegación */
+.player,.next{border-color:var(--line);background:rgba(10,11,13,.82)}
+.next:hover{border-color:var(--silver);box-shadow:none}
+.pl-pop{background:rgba(10,11,13,.97);border-color:var(--line)}
+.vinyl{background:radial-gradient(circle,var(--crimson) 0 16%,#0d0e10 17% 22%,#22252a 23% 100%)}
+.enter{background:rgba(8,9,10,.78)}
+/* entrada escalonada más fina */
+.panel.show :is(.tiles,.sites,.pricing,.trio,.vids,.lives,.tts,.cgrid)>*{animation:rise .7s var(--ease) both;animation-delay:calc(var(--i,0)*55ms)}
+/* PC: más aire y mejor rendimiento */
+@media(min-width:1200px){
+    .friends-block .tiles{--n:6}
+    .panel{padding-top:36px;gap:34px}
+    .lives{gap:20px}.vids{gap:20px}
+    .split{gap:48px}
+}
+@media(min-width:861px){.card,.site{will-change:auto}}
+/* celular: previews con el logo de cada web */
+@media(max-width:860px),(pointer:coarse){
+    .card{background:rgba(16,17,20,.88)}
+    .fview{aspect-ratio:16/7;background:radial-gradient(circle at 50% 50%,#1a1c20,#0b0c0e) center/cover}
+    .fview::before{content:"";position:absolute;inset:0;background:var(--logo,none) center/auto 62% no-repeat}
+    a.card:hover{transform:none}
+}
+
+/* ============ AJUSTE: plata manda, rojo solo de acento ============ */
+html{scroll-behavior:smooth}
+:focus-visible{outline-color:var(--silver)}
+.stage .o1{background:radial-gradient(circle,rgba(199,204,210,.16),transparent 68%)}
+.stage .o2{background:radial-gradient(circle,rgba(140,29,36,.22),transparent 68%)}
+.stage::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.07;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* barra de progreso de scroll */
+.prog{position:absolute;left:0;right:0;bottom:-1px;height:2px;pointer-events:none;transform-origin:0 50%;transform:scaleX(var(--p,0));background:linear-gradient(90deg,#6f747b,#fff)}
+/* pestañas */
+.tabs a[aria-current="page"]::after{width:22px;margin-left:-11px;background:linear-gradient(90deg,transparent,#e9ecef,transparent)}
+/* botones plateados */
+.btn.solid{background:linear-gradient(180deg,#eef0f2,#a9aeb5);border-color:#d6d9dd;color:#0d0e10;font-weight:600}
+.btn.solid:hover{background:linear-gradient(180deg,#fff,#c0c4ca);border-color:#fff;box-shadow:0 10px 28px -12px rgba(220,225,230,.55)}
+.btn.solid::after{background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent)}
+.btn:hover{border-color:var(--silver)}
+/* hero */
+.hero h1 .ol{-webkit-text-stroke:clamp(1.5px,.28vw,2.5px) var(--silver);filter:drop-shadow(0 0 22px rgba(140,29,36,.6))}
+.hero .kick{max-width:none;min-height:1.3em;color:var(--silver)}
+.caret{display:inline-block;width:2px;height:1em;margin-left:4px;vertical-align:-.12em;background:var(--silver);animation:blink 1s steps(1) infinite}
+.panel.show h1 span{animation:blurIn 1s var(--ease) both}
+.panel.show h1 span:first-child{animation:blurIn 1s var(--ease) both,sheen 7s linear 1s infinite}
+.panel.show h1 span.ol{animation:blurIn 1s var(--ease) .18s both}
+@keyframes blurIn{from{opacity:0;filter:blur(16px);transform:translateY(22px) scale(.97)}}
+.panel.show .socials>*{animation:pop .55s var(--ease) both;animation-delay:calc(.45s + var(--k,0)*55ms)}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.7)}}
+/* cinta de palabras */
+.marquee{margin-top:26px;padding:14px 0;border-block:1px solid var(--line);overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.mq{display:flex;width:max-content;animation:mq 42s linear infinite}
+.marquee:hover .mq{animation-play-state:paused}
+.mq span{display:flex;align-items:center;padding:0 22px;white-space:nowrap;font:700 clamp(1.05rem,2vw,1.4rem) var(--display);letter-spacing:-.01em;color:transparent;-webkit-text-stroke:1px rgba(199,204,210,.45)}
+.mq span:nth-child(3n){color:var(--silver);-webkit-text-stroke:0}
+.mq span::after{content:"✦";margin-left:44px;font-size:.6em;color:var(--red);-webkit-text-stroke:0}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* luz que sigue al mouse + brillo en previews */
+a.card:hover,.proj:hover,.clip:hover{background:radial-gradient(260px circle at var(--mx,50%) var(--my,0%),rgba(199,204,210,.11),transparent 70%),rgba(22,23,27,.88);border-color:rgba(199,204,210,.35)}
+.clip.hot,.clip.hot:hover{border-color:rgba(199,204,210,.4)}
+.shot::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.09) 50%,transparent 60%);transform:translateX(-110%);transition:transform .9s var(--ease)}
+.site:hover .shot::after{transform:translateX(110%)}
+/* acentos en plata */
+.hl{border-bottom-color:var(--silver)}.hl:hover{background:rgba(199,204,210,.16)}
+.price{border-color:rgba(199,204,210,.32)!important}
+.price .amt{background:linear-gradient(#fff,#a5aab2);-webkit-background-clip:text;background-clip:text;color:transparent}
+.price .amt small{-webkit-text-fill-color:var(--ash)}
+.eq i{background:var(--silver)}
+.player button:hover{background:rgba(255,255,255,.14);border-color:var(--silver)}
+#plist li.on{border-color:var(--silver)}#plist b{color:var(--silver)}
+.facade::after{background-color:rgba(14,15,17,.72);border:1px solid rgba(255,255,255,.35);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.facade:hover::after{background-color:var(--crimson);border-color:var(--crimson)}
+.chip.pop,.new{background:var(--crimson)}
+footer{border-top:1px solid var(--line);background:rgba(8,9,10,.8);letter-spacing:.02em}
+
+/* ============ AJUSTE 3: título neón gris, botones neón, más rojo oscuro (con medida) ============ */
+@keyframes blurIn{from{opacity:0;transform:translateY(22px) scale(.97)}}
+@keyframes neonGray{
+ 0%,100%{filter:drop-shadow(0 0 3px rgba(199,204,210,.5)) drop-shadow(0 0 12px rgba(150,156,164,.32)) drop-shadow(0 0 0 rgba(140,29,36,0))}
+ 50%{filter:drop-shadow(0 0 7px rgba(228,232,237,.85)) drop-shadow(0 0 26px rgba(150,156,164,.55)) drop-shadow(0 0 44px rgba(140,29,36,.4))}}
+@keyframes neonBtn{
+ 0%,100%{box-shadow:0 0 0 1px rgba(255,255,255,.12),0 0 10px rgba(199,204,210,.22),0 0 22px rgba(140,29,36,.35)}
+ 50%{box-shadow:0 0 0 1px rgba(255,255,255,.3),0 0 16px rgba(225,229,234,.45),0 0 34px rgba(179,38,45,.5)}}
+/* inicio: todo más arriba y compacto para que la cinta se vea al entrar */
+.panel.hero{justify-content:flex-start;gap:0;padding-top:clamp(14px,3.5vh,40px)}
+.hero-top{min-height:0}
+.hero .ava{width:84px;height:84px}
+.hero h1{font-size:clamp(2.6rem,8vw,5.6rem);margin-top:6px;letter-spacing:-.05em}
+.hero .kick{margin-top:12px;font-size:clamp(1rem,1.8vw,1.3rem)}
+.hero .row{margin-top:16px}
+.socials{margin-top:18px}
+.counters{margin-top:20px}
+.panel.show h1 span:first-child{animation:blurIn 1s var(--ease) both,sheen 7s linear 1s infinite,neonGray 3.6s ease-in-out 1s infinite}
+.panel.show h1 span.ol{animation:blurIn 1s var(--ease) .18s both,neonGray 3.6s ease-in-out 1.6s infinite}
+/* cinta más visible */
+.marquee{margin-top:20px;background:linear-gradient(90deg,transparent,rgba(140,29,36,.2) 30%,rgba(140,29,36,.2) 70%,transparent);border-block-color:rgba(199,204,210,.16)}
+.mq span{font-size:clamp(1.15rem,2.2vw,1.6rem);-webkit-text-stroke:1px rgba(199,204,210,.65)}
+.mq span:nth-child(3n){-webkit-text-stroke:0}
+/* botones neón */
+.btn.solid{animation:neonBtn 3.2s ease-in-out infinite}
+.btn.solid:hover{animation:none;box-shadow:0 0 0 1px #fff,0 0 18px rgba(240,243,246,.65),0 0 40px rgba(179,38,45,.6)}
+.proj .btn.solid{animation:none;box-shadow:0 0 12px -2px rgba(179,38,45,.4)}
+.proj .btn.solid:hover{box-shadow:0 0 0 1px #fff,0 0 18px rgba(240,243,246,.6),0 0 36px rgba(179,38,45,.55)}
+.btn:not(.solid){position:relative}
+.btn:not(.solid)::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;pointer-events:none;background:conic-gradient(from var(--a),transparent 55%,rgba(179,38,45,.95) 80%,#e3e6ea 95%,transparent);animation:spin 4.5s linear infinite;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.btn:not(.solid):hover{box-shadow:0 0 18px -2px rgba(199,204,210,.4),0 0 28px -6px rgba(179,38,45,.5)}
+/* rojo oscuro: solo en resaltados y fondos */
+.stage .o2{width:46vw;height:46vw;background:radial-gradient(circle,rgba(140,29,36,.4),transparent 68%)}
+.stage::after{background:radial-gradient(ellipse at 50% 120%,rgba(140,29,36,.3),transparent 55%),radial-gradient(ellipse at 50% 35%,rgba(8,9,10,0) 0%,rgba(8,9,10,.55) 60%,#08090a 100%)}
+.head h2::after{content:"";display:block;width:44px;height:3px;margin:14px auto 0;border-radius:3px;background:linear-gradient(90deg,var(--crimson),var(--red));box-shadow:0 0 14px rgba(179,38,45,.55)}
+.cap::before{background:linear-gradient(90deg,transparent,rgba(179,38,45,.6))}
+.cap::after{background:linear-gradient(90deg,rgba(179,38,45,.6),transparent)}
+.tabs a[aria-current="page"]{box-shadow:0 10px 22px -16px rgba(179,38,45,.95)}
+.tabs a[aria-current="page"]::after{background:linear-gradient(90deg,transparent,#c4343c,transparent)}
+.hl{border-bottom:0;background:linear-gradient(transparent 62%,rgba(140,29,36,.6) 62%);transition:background .25s}
+.hl:hover{background:rgba(140,29,36,.65)}
+.price{border-color:rgba(179,38,45,.55)!important;background:linear-gradient(160deg,rgba(140,29,36,.24),rgba(16,17,20,.78) 60%);box-shadow:0 0 40px -14px rgba(140,29,36,.6)}
+.clip.hot,.clip.hot:hover{border-color:rgba(179,38,45,.6);box-shadow:0 0 30px -12px rgba(179,38,45,.6)}
+.card.story{background:linear-gradient(135deg,rgba(140,29,36,.2),rgba(10,11,13,.66) 55%)}
+footer{border-top-color:rgba(179,38,45,.35)}
+/* pestaña "¿Sabías que…?" */
+.fact{position:fixed;right:14px;bottom:62px;z-index:125;width:min(360px,calc(100vw - 28px));padding:16px 16px 20px;border-radius:18px;overflow:hidden;background:rgba(12,13,16,.95);border:1px solid rgba(199,204,210,.18);box-shadow:0 24px 50px -22px #000,0 0 44px -20px rgba(179,38,45,.7);opacity:0;transform:translateY(18px) scale(.96);transition:opacity .4s var(--ease),transform .5s var(--ease)}
+.fact::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,var(--crimson),transparent)}
+.fact.in{opacity:1;transform:none}
+.fact-k{display:flex;align-items:center;gap:8px;font:700 .68rem var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--silver)}
+.fact-k i{width:6px;height:6px;border-radius:50%;background:var(--red);animation:blink 1.6s ease-in-out infinite}
+.fact-k #factE{font-size:.9rem;letter-spacing:0}
+.fact h4{margin:8px 0 6px;padding-right:22px;font:700 1.08rem var(--display);letter-spacing:-.01em}
+.fact p{color:var(--soft);font-size:.86rem;line-height:1.55}
+.fact .btn{margin-top:14px;padding:8px 20px;font-size:.85rem}
+.fact-x{position:absolute;top:10px;right:10px;width:26px;height:26px;display:grid;place-items:center;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--soft);cursor:pointer;font-size:1.05rem;line-height:1;transition:background .2s,color .2s}
+.fact-x:hover{background:rgba(255,255,255,.1);color:#fff}
+.fact-bar{position:absolute;left:0;bottom:0;height:2px;width:100%;transform-origin:0 50%;background:linear-gradient(90deg,var(--crimson),var(--red))}
+.fact.in .fact-bar{animation:factBar 18s linear forwards}
+@keyframes factBar{to{transform:scaleX(0)}}
+@media(max-width:600px){.fact{left:14px;right:14px;width:auto}.hero h1{font-size:clamp(2.5rem,14vw,3.8rem)}}
+/* celular: neón estático para no gastar batería */
+@media(max-width:860px),(pointer:coarse){
+    .panel.show h1 span:first-child{animation:blurIn 1s var(--ease) both;filter:drop-shadow(0 0 8px rgba(199,204,210,.4))}
+    .panel.show h1 span.ol{animation:blurIn 1s var(--ease) .18s both;filter:drop-shadow(0 0 8px rgba(199,204,210,.5))}
+    .btn.solid{animation:none;box-shadow:0 0 14px -2px rgba(179,38,45,.5)}
+    .btn:not(.solid)::before{animation:none;background:linear-gradient(90deg,rgba(179,38,45,.6),rgba(199,204,210,.5))}
+}
+
+/* ============ AJUSTE 4: inicio centrado y más grande ============ */
+.panel.hero{padding-top:clamp(10px,2vh,24px)}
+.hero-top{min-height:calc(100dvh - 270px);justify-content:center}
+.hero .ava{width:104px;height:104px}
+.hero h1{font-size:clamp(3.2rem,10vw,7.4rem);margin-top:8px}
+.hero .kick{margin-top:16px;font-size:clamp(1.1rem,2vw,1.55rem)}
+.hero .row{margin-top:22px}
+.hero .btn{padding:13px 28px;font-size:1rem}
+.socials{margin-top:22px;gap:12px}
+.social{width:50px;height:50px}.social img{width:25px;height:25px}
+.counters{margin-top:26px}
+.counter{padding:2px 34px}
+.counter strong{font-size:2.3rem}
+.counter>span{font-size:.88rem}
+.marquee{margin-top:12px}
+@media(max-width:860px){.hero-top{min-height:calc(100dvh - 330px)}}
+@media(max-width:600px){
+    .hero .ava{width:92px;height:92px}
+    .hero h1{font-size:clamp(2.9rem,16vw,4.4rem)}
+    .hero .btn{padding:12px 22px}
+    .counter{padding:2px 14px}.counter strong{font-size:1.7rem}
+}
+@media(max-height:700px) and (min-width:861px){.hero-top{min-height:0}.hero .ava{width:84px;height:84px}.hero h1{font-size:clamp(2.8rem,8vw,5.8rem)}}
+
+/* ============ AJUSTE 5: cinta plateada, mouse, transiciones y modo ligero ============ */
+.stage::before{mix-blend-mode:normal;opacity:.045}
+.friends-block{content-visibility:auto;contain-intrinsic-size:auto 640px}
+/* cinta plateada */
+.marquee{position:relative;margin-top:12px;padding:16px 0 14px;display:grid;gap:8px;border:0;background:linear-gradient(180deg,rgba(199,204,210,.08),rgba(199,204,210,.015));box-shadow:inset 0 1px 0 rgba(255,255,255,.24),inset 0 -1px 0 rgba(255,255,255,.1)}
+.marquee::after{content:"";position:absolute;top:0;bottom:0;left:0;width:26%;pointer-events:none;background:linear-gradient(100deg,transparent,rgba(255,255,255,.15),transparent);transform:translateX(-120%);animation:glint 6s ease-in-out infinite}
+@keyframes glint{0%{transform:translateX(-120%)}60%,100%{transform:translateX(480%)}}
+.mq{will-change:transform}
+.mq span{padding:0 26px;font:800 clamp(1.5rem,3.1vw,2.5rem) var(--display);letter-spacing:-.03em;background:linear-gradient(180deg,#fff 5%,#d3d7dc 45%,#7b8189 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:0}
+.mq span:nth-child(3n){background:linear-gradient(180deg,#fff 5%,#d3d7dc 45%,#7b8189 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:0}
+.mq span:nth-child(even){background:none;color:transparent;-webkit-text-stroke:1.2px rgba(214,219,224,.75)}
+.mq span::after{content:"✦";margin-left:52px;font-size:.5em;color:#aeb4bb;-webkit-text-stroke:0}
+.mq.rev{animation-direction:reverse;animation-duration:58s}
+.mq.rev span,.mq.rev span:nth-child(even),.mq.rev span:nth-child(3n){font-size:clamp(.95rem,1.7vw,1.3rem);font-weight:600;letter-spacing:.16em;text-transform:uppercase;background:none;color:rgba(176,182,190,.85);-webkit-text-stroke:0}
+.mq.rev span::after{content:"•";margin-left:40px}
+/* hero: espacio para la cinta de 2 filas */
+.hero-top{min-height:calc(100dvh - 320px)}
+@media(max-width:860px){.hero-top{min-height:calc(100dvh - 340px)}.mq.rev{display:none}.marquee{padding:12px 0}}
+@media(max-height:700px) and (min-width:861px){.hero-top{min-height:0}}
+/* transición entre secciones */
+@keyframes enter{from{opacity:0;transform:translateY(16px) scale(.99)}}
+.panel.leaving{animation:leave .19s ease-in forwards;pointer-events:none}
+@keyframes leave{to{opacity:0;transform:translateY(-10px) scale(.99)}}
+.top::before{content:"";position:absolute;left:0;bottom:-1px;height:2px;width:35%;opacity:0;pointer-events:none;background:linear-gradient(90deg,transparent,#fff,transparent)}
+.top.go::before{animation:sweep .8s var(--ease)}
+@keyframes sweep{0%{opacity:1;transform:translateX(-100%)}100%{opacity:0;transform:translateX(300%)}}
+/* indicador deslizante del menú */
+.tabs{position:relative}
+.tab-ind{position:absolute;left:0;top:50%;height:34px;margin-top:-17px;width:0;border-radius:999px;background:rgba(255,255,255,.08);box-shadow:0 10px 22px -16px rgba(179,38,45,.95);transition:transform .45s var(--ease),width .45s var(--ease),opacity .3s;pointer-events:none}
+.tab-ind::after{content:"";position:absolute;left:50%;bottom:3px;width:22px;margin-left:-11px;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,#c4343c,transparent)}
+.tabs a[aria-current="page"]{background:transparent;box-shadow:none}
+.tabs a[aria-current="page"]::after{display:none}
+/* mouse: anillo, luz, ondas e imán en botones (solo PC con mouse) */
+.btn:hover,.social:hover{transform:translate(var(--tx,0px),calc(var(--ty,0px) - 2px))}
+.btn:active{transform:scale(.97)}
+/* modo ligero: sin efectos pesados */
+.lite *{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.lite .stage::before,.lite .stage .orb,.lite .marquee::after,.lite .mq.rev,.lite .shot::after{display:none}
+.lite .panel.show h1 span:first-child{animation:blurIn 1s var(--ease) both;filter:drop-shadow(0 0 8px rgba(199,204,210,.4))}
+.lite .panel.show h1 span.ol{animation:blurIn 1s var(--ease) .18s both;filter:drop-shadow(0 0 8px rgba(199,204,210,.5))}
+.lite .btn.solid{animation:none;box-shadow:0 0 14px -2px rgba(179,38,45,.5)}
+.lite .btn:not(.solid)::before{animation:none;background:linear-gradient(90deg,rgba(179,38,45,.6),rgba(199,204,210,.5))}
+.lite .hero .ava,.lite .caret{animation:none}
+.lite .fview{aspect-ratio:16/7;background:radial-gradient(circle at 50% 50%,#1a1c20,#0b0c0e) center/cover}
+.lite .fview iframe{display:none}
+.lite .fview::before{content:"";position:absolute;inset:0;background:var(--logo,none) center/auto 62% no-repeat}
+.lite .card{transition:border-color .2s}
+.lite a.card:hover,.lite .proj:hover{transform:none}
+.lite .panel.show :is(.tiles,.sites,.pricing,.trio,.vids,.lives,.tts,.cgrid)>*{animation-duration:.35s}
+
+/* previews en vivo: indicador y aviso cuando hay límite de memoria */
+.site.is-live .bar::before{content:"●";margin-right:6px;color:#c4343c;animation:blink 1.6s ease-in-out infinite}
+.pool .site:not(.is-live) .bar::after{content:" · pasa el mouse para ver en vivo";opacity:.55}
+.site .fview iframe{background:#000}
+
+/* cinta: una sola fila */
+.marquee{padding:14px 0}
+.hero-top{min-height:calc(100dvh - 285px)}
+@media(max-width:860px){.hero-top{min-height:calc(100dvh - 330px)}}
+@media(max-height:700px) and (min-width:861px){.hero-top{min-height:0}}
+
+/* ============ AJUSTE 6: orden, centrado y bugs visuales ============ */
+/* barra superior: logo | pestañas | visitas+idioma, tabs al centro real */
+@media(min-width:861px){.top{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)}}
+.tabs a{white-space:nowrap}
+/* Sobre mí: tarjeta centrada, una columna, texto centrado */
+.panel.bleed{padding:28px 24px 84px;gap:0;justify-content:center}
+.panel.bleed>*{max-width:900px}
+.card.story{flex:0 0 auto;border-radius:16px;border-width:1px;padding:clamp(26px,4.5vw,52px) clamp(20px,5vw,60px);text-align:center;column-count:auto!important;column-gap:0}
+.card.story h2{margin-bottom:26px}
+.card.story h2::after{content:"";display:block;width:44px;height:3px;margin:14px auto 0;border-radius:3px;background:linear-gradient(90deg,var(--crimson),var(--red))}
+.card.story h3{margin:30px 0 8px}
+.card.story p{max-width:64ch;margin-left:auto;margin-right:auto}
+/* Proyectos: bloques apilados y centrados */
+.split{grid-template-columns:minmax(0,1fr);gap:28px;justify-items:center;align-items:start}
+.split .side{position:static;text-align:center;width:100%;max-width:760px;display:flex;flex-direction:column;align-items:center}
+.split .side p.wide{margin:14px auto 0;max-width:62ch}
+.split .side .price{width:100%;max-width:440px;margin:22px auto 0}
+.split .sites{width:100%;max-width:1000px!important;margin:0 auto;grid-template-columns:repeat(3,minmax(0,1fr))}
+.split .tiles{width:100%;--n:5;justify-content:center}
+.split+.split{padding-top:40px;margin-top:6px;width:100%}
+@media(min-width:1200px){.split .tiles{--n:7}}
+@media(max-width:1000px){.split .sites{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:860px){.split .tiles{--n:3}}
+@media(max-width:600px){.split .sites{grid-template-columns:minmax(0,1fr)}.split .tiles{--n:2}}
+/* previews: logo mientras la web no está viva (antes se veía un cuadro negro) */
+.site .fview iframe{background:transparent;opacity:0;transition:opacity .5s}
+.site.is-live .fview iframe{opacity:1}
+/* botones: el sólido también anima el levantón */
+.btn.solid{transition:transform .35s var(--ease),background .25s,border-color .25s,box-shadow .35s}
+.btn.solid:hover{transform:translate(var(--tx,0px),calc(var(--ty,0px) - 2px))}
+.btn.solid:active{transform:scale(.97)}
+.btn{white-space:nowrap}
+/* reproductor: ecualizador centrado y sin choque con el botón Siguiente en celular */
+.player button.eq{height:28px;align-items:center;justify-content:center}
+.eq i{align-self:center}
+@media(max-width:700px){
+    .more{display:none}
+    .player.open .more{display:flex}
+    .player.open{max-width:calc(100vw - 150px)}
+    .next span{display:none}
+    .next{padding:9px}
+}
+@media(max-width:700px){footer{padding:8px 64px;font-size:.74rem;line-height:1.35}}
+/* idioma: botón coherente con el resto */
+.lang-btn:hover{background:rgba(255,255,255,.06);border-color:var(--silver)}
+.lang-btn:focus-visible{outline:2px solid var(--silver)}
+
+/* ============ AJUSTE 7: NoPing, menú móvil y páginas horizontales en PC ============ */
+/* --- banner sponsor --- */
+.sp-row{display:flex;justify-content:center;margin-top:30px}
+#v-contenido .sp-row{margin-top:0}
+.sponsor{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(0,1fr);align-items:center;overflow:hidden;width:100%;max-width:1040px;color:inherit;text-decoration:none;background:linear-gradient(135deg,rgba(140,29,36,.22),rgba(10,11,13,.7) 60%)}
+.sp-media{position:relative;width:100%;min-width:0;align-self:center;background:#000;aspect-ratio:var(--ar,16/9);overflow:hidden;border-right:1px solid var(--line)}
+.sp-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.sp-body{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:6px;padding:clamp(18px,3vw,34px);text-align:left}
+.sp-k{display:flex;align-items:center;gap:8px;font:700 .72rem var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--ash)}
+.sp-k::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--red);animation:blink 1.6s ease-in-out infinite}
+.sp-n{font:800 clamp(2rem,3.8vw,3rem)/1 var(--display);letter-spacing:-.045em;background:linear-gradient(#fff,#a5aab2);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 14px rgba(179,38,45,.4))}
+.sp-t{font:700 1.15rem var(--display);color:var(--paper)}
+.sp-d{color:var(--soft);font-size:.92rem;line-height:1.5}
+.sp-cta{margin-top:12px;padding:10px 22px;font-size:.9rem}
+.sponsor.nolink{cursor:default}
+.sponsor.nolink:hover{transform:none}
+.sponsor.nolink .sp-cta{display:none}
+.sponsor.nomedia{grid-template-columns:1fr}
+.sponsor.nomedia .sp-media{display:none}
+.sponsor.compact{grid-template-columns:1fr}
+.sponsor.compact .sp-media{border-right:0;border-bottom:1px solid var(--line)}
+.sponsor.compact .sp-body{padding:20px 22px 22px}
+@media(max-width:860px){
+    .sponsor{grid-template-columns:1fr;max-width:620px}
+    .sp-media{border-right:0;border-bottom:1px solid var(--line)}
+    .sp-body{align-items:center;text-align:center}
+    .sp-k{justify-content:center}
+}
+
+/* --- Sobre mí --- */
+.about-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--gap);align-items:start}
+.about-side{display:grid;gap:var(--gap);align-content:start;min-width:0}
+.about-main{display:grid;gap:22px;min-width:0}
+.about-id{padding:clamp(22px,3vw,32px);display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;background:linear-gradient(135deg,rgba(140,29,36,.2),rgba(10,11,13,.66) 55%)}
+.about-id .ava{width:92px;height:92px;border-radius:50%;object-fit:cover;border:1px solid rgba(199,204,210,.45);box-shadow:0 0 0 6px rgba(255,255,255,.04)}
+.about-id h2{font:800 clamp(1.7rem,2.6vw,2.2rem)/1.05 var(--display);letter-spacing:-.035em}
+.about-id h2::after{content:"";display:block;width:44px;height:3px;margin:12px auto 0;border-radius:3px;background:linear-gradient(90deg,var(--crimson),var(--red))}
+.about-id p{color:#d4d7dc;font-size:1rem;line-height:1.7}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:4px}
+.abt-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap)}
+.abt{padding:clamp(20px,2.4vw,28px);display:flex;flex-direction:column;gap:10px}
+.abt h3{font-size:1.25rem}
+.abt p{color:#d4d7dc;font-size:1rem;line-height:1.7}
+.abt strong{color:var(--paper)}
+.abt-wide{grid-column:1/-1}
+.abt .closing{color:var(--paper);font-weight:500}
+.tl{list-style:none;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:18px}
+.tl li{position:relative;padding-top:20px;border-top:1px solid rgba(199,204,210,.22)}
+.tl li::before{content:"";position:absolute;top:-5px;left:0;width:9px;height:9px;border-radius:50%;background:var(--red);box-shadow:0 0 12px rgba(179,38,45,.8)}
+.tl b{display:block;font:800 1.2rem var(--display);letter-spacing:-.02em;background:linear-gradient(#fff,#a5aab2);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tl span{display:block;margin-top:3px;color:var(--soft);font-size:.9rem;line-height:1.45}
+@media(min-width:1000px){.about-grid{grid-template-columns:minmax(320px,380px) minmax(0,1fr);gap:28px}}
+@media(max-width:860px){
+    .abt-grid{grid-template-columns:1fr}
+    .tl{grid-template-columns:1fr;gap:0}
+    .tl li{border-top:0;border-left:1px solid rgba(199,204,210,.22);padding:0 0 18px 20px}
+    .tl li:last-child{padding-bottom:0}
+    .tl li::before{top:4px;left:-5px}
+}
+
+/* --- Proyectos y Contacto: horizontales en PC --- */
+@media(min-width:1100px){
+    .split{grid-template-columns:minmax(300px,360px) minmax(0,1fr);gap:36px;justify-items:stretch;align-items:start}
+    .split .side{max-width:none;align-items:flex-start;text-align:left}
+    .split .side p.wide{margin:12px 0 0;max-width:none}
+    .split .side .price{max-width:none;margin:20px 0 0}
+    .split .sites{max-width:none!important;margin:0;grid-template-columns:repeat(2,minmax(0,1fr))}
+    .split .tiles{--n:4;max-width:none;justify-content:flex-start}
+}
+@media(min-width:1100px) and (min-height:760px){.split .side{position:sticky;top:8px}}
+#v-contacto .cgrid{max-width:920px!important}
+
+/* --- Menú móvil (reemplaza las pestañas con scroll lateral) --- */
+.menu-btn{display:none}
+@media(max-width:860px){
+    .top{grid-template-columns:minmax(0,1fr) auto auto;grid-template-areas:"logo visits menu";align-items:center;gap:10px;padding:8px 12px}
+    .logo{grid-area:logo;min-width:0}
+    .menu-btn{grid-area:menu;display:grid;place-content:center;gap:5px;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.04);cursor:pointer;-webkit-tap-highlight-color:transparent}
+    .menu-btn span{display:block;width:20px;height:2px;border-radius:2px;background:var(--paper);transition:transform .3s var(--ease),opacity .2s}
+    .top.menu-open .menu-btn{border-color:rgba(199,204,210,.4)}
+    .top.menu-open .menu-btn span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .top.menu-open .menu-btn span:nth-child(2){opacity:0}
+    .top.menu-open .menu-btn span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .tabs{position:absolute;left:0;right:0;top:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));justify-content:stretch;gap:8px;margin:0;padding:12px;overflow-x:hidden;overflow-y:auto;max-height:calc(100dvh - 72px);background:rgba(8,9,10,.98);border-bottom:1px solid var(--line);box-shadow:0 26px 40px -22px #000;opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .25s,transform .35s var(--ease),visibility 0s .35s}
+    .top.menu-open .tabs{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+    .tabs a{display:flex;align-items:center;min-height:50px;padding:12px 16px;font-size:1rem;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
+    .tabs a[aria-current="page"]{color:#fff;background:rgba(179,38,45,.2);border-color:rgba(179,38,45,.6)}
+    .tab-ind{display:none}
+    .hero-top{min-height:calc(100dvh - 300px)}
+    main{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+}
+@media(max-width:480px){
+    .visits span:nth-child(2){display:none}
+    .visits{padding:6px 10px}
+    .rt{gap:6px}
+    .logo{font-size:1.1rem}
+}
+@media(pointer:coarse){.player button{width:36px;height:36px}.player button.eq{height:36px}.lang-btn{min-height:36px}}
+
+/* --- insignia discreta del sponsor (esquina, todo el sitio) --- */
+main{z-index:1}
+.spbadge{position:fixed;right:14px;bottom:58px;z-index:119;width:214px;border-radius:14px;overflow:hidden;background:rgba(10,11,13,.9);border:1px solid var(--line);box-shadow:0 14px 30px -16px #000;transition:opacity .35s,transform .45s var(--ease),border-color .25s}
+.spbadge[hidden]{display:none!important}
+.spbadge.off{opacity:0;transform:translateY(10px);pointer-events:none}
+.spbadge:hover{border-color:rgba(199,204,210,.4)}
+.top.menu-open~.spbadge{opacity:0;pointer-events:none}
+.spb-a{display:block;color:inherit;text-decoration:none}
+.spb-a.nolink{cursor:default}
+.spbadge .sp-media{align-self:auto;border-right:0;border-bottom:1px solid var(--line)}
+.spb-a.nomedia .sp-media{display:none}
+.spb-t{display:flex;flex-direction:column;gap:1px;padding:8px 12px 10px}
+.spb-t .sp-k{font-size:.62rem}
+.spb-t strong{font:800 1.05rem var(--display);letter-spacing:-.02em}
+.spb-t span:last-child{color:var(--soft);font-size:.74rem;line-height:1.35}
+.spb-x{position:absolute;top:5px;right:5px;z-index:2;width:22px;height:22px;display:grid;place-items:center;border-radius:50%;border:0;background:rgba(0,0,0,.65);color:#fff;cursor:pointer;font-size:.95rem;line-height:1;transition:background .2s}
+.spb-x:hover{background:var(--crimson)}
+@media(min-width:601px){.fact{left:14px;right:auto}}
+@media(max-width:600px){.fact{bottom:118px}}
+@media(max-width:700px){
+    .spbadge{width:auto;max-width:calc(100vw - 80px);bottom:60px}
+    .spbadge .sp-media{display:none}
+    .spb-t{padding:8px 34px 9px 12px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+<link rel="preconnect" href="https://abacus.jasoncameron.dev" crossorigin>
+</head>
+<body>
+
+<div class="stage" aria-hidden="true">
+    <img id="heroBg" src="assets/banners/a.gif" alt="">
+    <div class="vid" id="heroVideo"></div>
+    <div class="orb o1"></div><div class="orb o2"></div>
+</div>
+
+<header class="top">
+    <a class="logo" href="/" data-nav="inicio"><img src="assets/avatars/logonwevo2.png" alt="">Zansumi</a>
+    <nav class="tabs" id="tabs" aria-label="Secciones">
+        <a href="/" data-nav="inicio">Inicio</a>
+        <a href="/sobre-mi/" data-nav="sobre-mi">Sobre mí</a>
+        <a href="/proyectos/" data-nav="proyectos">Proyectos</a>
+        <a href="/contenido/" data-nav="contenido">Contenido</a>
+        <a href="/setup/" data-nav="setup">Setup</a>
+        <a href="/contacto/" data-nav="contacto">Contacto</a>
+    </nav>
+    <div class="visits" id="visits" title="Visitas totales de la página" aria-live="polite"><span class="dot"></span><span>Visitas</span><b id="visitsNum">--</b></div>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Menú" aria-expanded="false" aria-controls="tabs"><span></span><span></span><span></span></button>
+    <div class="prog" id="prog" aria-hidden="true"></div>
+</header>
+
+<main id="view">
+
+    <!-- INICIO -->
+    <section class="panel hero" id="v-inicio">
+        <div class="hero-top">
+        <img class="ava" src="assets/avatars/logonwevo2.png" alt="Logo de Zansumi">
+        <h1><span>ZAN</span><span class="ol">SUMI</span></h1>
+        <p class="kick"><span id="typed">Creo contenido, eventos de Minecraft y más.</span><i class="caret" aria-hidden="true"></i></p>
+        <div class="row">
+            <a class="btn solid" href="/proyectos/" data-nav="proyectos">Ver proyectos</a>
+            <a class="btn" href="/contenido/" data-nav="contenido">Ver contenido</a>
+        </div>
+        <div class="socials">
+            <a class="social" target="_blank" rel="noopener" href="https://x.com/zansum1" aria-label="X" title="X"><img src="assets/avatars/x.png" alt="X" data-f="X"></a>
+            <a class="social" target="_blank" rel="noopener" href="https://www.youtube.com/@Zansumii/videos" aria-label="YouTube" title="YouTube"><img src="assets/avatars/logo yt.png" alt="YouTube" data-f="Y"></a>
+            <a class="social" target="_blank" rel="noopener" href="https://www.twitch.tv/zansumi" aria-label="Twitch" title="Twitch"><img src="assets/avatars/twicht logo.png" alt="Twitch" data-f="T"></a>
+            <a class="social" target="_blank" rel="noopener" href="https://kick.com/zansumi" aria-label="Kick" title="Kick"><img src="assets/avatars/kick.png" alt="Kick" data-f="K"></a>
+            <a class="social" target="_blank" rel="noopener" href="https://www.tiktok.com/@zansum1" aria-label="TikTok" title="TikTok"><img src="assets/avatars/tiktok logo.png" alt="TikTok" data-f="Tk"></a>
+            <a class="social" target="_blank" rel="noopener" href="https://www.instagram.com/zansum1" aria-label="Instagram" title="Instagram"><img src="assets/avatars/instagram-logo-png_seeklogo-306452.png" alt="Instagram" data-f="I"></a>
+            <a class="social" target="_blank" rel="noopener" href="https://steamcommunity.com/id/Zansumi/" aria-label="Steam" title="Steam"><img src="assets/avatars/steam.png" alt="Steam" data-f="S"></a>
+            <a class="social" target="_blank" rel="noopener" href="https://discord.gg/WaYUTm4CG3" aria-label="Discord" title="Discord"><img src="assets/avatars/discord.png" alt="Discord" data-f="D"></a>
+        </div>
+        <div class="counters">
+            <div class="counter"><strong><span data-count="1200">0</span>+</strong><span>Suscriptores en YouTube</span></div>
+            <div class="counter"><strong><span data-count="490">0</span>+</strong><span>Seguidores en Twitch</span></div>
+            <div class="counter"><strong><span data-count="140">0</span>+</strong><span>Seguidores en Kick</span></div>
+        </div>
+        </div>
+                <div class="marquee" aria-hidden="true"><div class="mq"><span>Minecraft</span><span>Streams</span><span>Twitch</span><span>Kick</span><span>LMC Studios™</span><span>Team LMC™</span><span>Desarrollo web</span><span>Servidores</span><span>Valorant</span><span>Hecho en México</span><span>Minecraft</span><span>Streams</span><span>Twitch</span><span>Kick</span><span>LMC Studios™</span><span>Team LMC™</span><span>Desarrollo web</span><span>Servidores</span><span>Valorant</span><span>Hecho en México</span></div></div>
+        <div class="friends-block">
+            <div class="head"><h2>Mis amigos</h2><p>Creadores que sigo y recomiendo.</p></div>
+            <div class="tiles n4">
+            <a href="https://guns.lol/zfrixz" target="_blank" rel="noopener" class="card friend"><img src="assets/avatars/zfrixz.png" alt=""><h3>zFrixz</h3></a>
+            <a href="https://www.twitch.tv/iwanhx" target="_blank" rel="noopener" class="card friend"><img src="assets/avatars/iwan.png" alt=""><h3>IwanHX</h3></a>
+            <a href="https://kick.com/theandreuspr" target="_blank" rel="noopener" class="card friend"><img src="assets/avatars/andreus.png" alt=""><h3>TheAndreusPR</h3></a>
+            <a href="https://www.twitch.tv/juliokingdom21" target="_blank" rel="noopener" class="card friend"><img src="assets/avatars/julio.png" alt=""><h3>Juliokingdom21</h3></a>
+            <a href="https://www.twitch.tv/elmarcoplays" target="_blank" rel="noopener" class="card friend"><img src="assets/avatars/marco.png" alt=""><h3>Elmarcoplays</h3></a>
+            <a href="https://kick.com/daantix" target="_blank" rel="noopener" class="card friend"><img src="assets/avatars/DANTIX.png" alt=""><h3>Daantix</h3></a>
+            <a href="https://www.twitch.tv/emcant" target="_blank" rel="noopener" class="card friend"><img src="assets/avatars/emcant.png" alt=""><h3>Emcant</h3></a>
+            <a href="https://www.twitch.tv/bandejitaapaisaa" target="_blank" rel="noopener" class="card friend"><img src="assets/avatars/bandejita.png" alt=""><h3>BandejitaaPaisaa</h3></a>
+            <a href="https://www.twitch.tv/raul_casual7" target="_blank" rel="noopener" class="card friend"><img src="assets/avatars/raul.png" alt=""><h3>Raulcasual</h3></a>
+            <a href="https://www.instagram.com/sxnz.paat/" target="_blank" rel="noopener" class="card friend"><img src="assets/avatars/paty.png" alt=""><h3>Patyjeje</h3></a>
+            <a href="https://www.youtube.com/@thesenarioyt" target="_blank" rel="noopener" class="card friend"><img src="assets/avatars/senario.png" alt=""><h3>SenarioYT</h3></a>
+        </div>
+        </div>
+    </section>
+
+    <!-- SOBRE MÍ -->
+    <section class="panel about" id="v-sobre-mi" hidden>
+        <div class="about-grid">
+            <aside class="about-side">
+                <div class="card about-id">
+                    <img class="ava" src="assets/avatars/logonwevo2.png" alt="Logo de Zansumi">
+                    <h2>Sobre mí — Zansumi</h2>
+                    <p>Soy Zansumi, creador de contenido de México, apasionado por los <a class="hl" href="/contenido/" data-nav="contenido">videojuegos</a>, la tecnología y el desarrollo de proyectos digitales. Llevo años aprendiendo por mi cuenta y compartiendo mis ideas con mi comunidad; aunque a veces parezca que somos pocos, sé que ahí están. JAJA.</p>
+                    <div class="chips"><span class="chip">Minecraft</span><span class="chip">Streams</span><span class="chip">Desarrollo web</span><span class="chip">Servidores</span><span class="chip">Hecho en México</span></div>
+                </div>
+                <a class="card sponsor compact" data-sponsor aria-label="NoPing — Mejora tu ping">
+    <div class="sp-media"><video src="assets/nping.webm#t=0.1" muted loop playsinline preload="metadata" aria-hidden="true" tabindex="-1"></video></div>
+    <div class="sp-body">
+        <span class="sp-k">Canal sponsoreado por</span>
+        <strong class="sp-n">NoPing</strong>
+        <span class="sp-t">Mejora tu ping y boostea tus FPS</span>
+        <span class="sp-d">Mejora tu conexión en juegos como Valorant, Minecraft, Fortnite y más.</span>
+        <span class="btn solid sp-cta">Conocer NoPing</span>
+    </div>
+</a>
+            </aside>
+            <div class="about-main">
+                <div>
+                    <p class="cap">Trayectoria</p>
+                    <ol class="tl">
+                        <li><b>Nov 2020</b><span>Empecé en YouTube desde mi celular</span></li>
+                        <li><b>2021</b><span>Mi primera laptop con Minecraft 1.8</span></li>
+                        <li><b>Feb 2024</b><span>Llegó mi primera PC con Ryzen</span></li>
+                        <li><b>Sep 2024</b><span>Fundé Team LMC</span></li>
+                        <li><b>Nov 2025</b><span>Fundé LMC Studios</span></li>
+                        <li><b>22 Nov 2026</b><span>Me patrocina NoPing</span></li>
+                    </ol>
+                </div>
+                <div class="abt-grid">
+                    <article class="card abt">
+                        <h3>Mis inicios</h3>
+                        <p>Empecé en <strong>noviembre de 2020</strong> subiendo videos a <a class="hl" href="https://www.youtube.com/@Zansumii/videos" target="_blank" rel="noopener">YouTube</a> desde mi celular. En <strong>2021</strong> me regalaron una laptop humilde con Intel Celeron y con ella hice mis primeros videos de Minecraft 1.8. En <strong>febrero de 2024</strong> llegó mi primera PC con Ryzen y pude crear contenido de Valorant, Fortnite y más, en videos y directos.</p>
+                        <p>Hoy sumo cerca de <strong>7 años</strong> en YouTube y <strong>4 años</strong> haciendo directos en <a class="hl" href="https://www.twitch.tv/zansumi" target="_blank" rel="noopener">Twitch</a>.</p>
+                    </article>
+                    <article class="card abt">
+                        <h3>Mis proyectos</h3>
+                        <p>En <strong>septiembre de 2024</strong> fundé <a class="hl" href="https://x.com/team__lmc" target="_blank" rel="noopener">Team LMC ™</a> (<a class="hl" href="https://team-lmc-oficial.github.io/" target="_blank" rel="noopener">página oficial</a>), un equipo para creadores, videojuegos y proyectos comunitarios. El <strong>6 de noviembre de 2025</strong> fundé <a class="hl" href="https://x.com/lmcstudi0s" target="_blank" rel="noopener">LMC Studios ™</a> (<a class="hl" href="https://lmcstudios.art" target="_blank" rel="noopener">lmcstudios.art</a>), un estudio de <a class="hl" href="/proyectos/" data-nav="proyectos">servidores y eventos de Minecraft</a>.</p>
+                    </article>
+                    <article class="card abt">
+                        <h3>¿Qué hago ahora?</h3>
+                        <p>Hago <a class="hl" href="/contenido/" data-nav="contenido">directos</a> de Minecraft, Valorant y otros juegos, comparto novedades de mis proyectos y me dedico al <a class="hl" href="/proyectos/" data-nav="proyectos">desarrollo web</a> y a la configuración de servidores con plugins, mods y diferentes herramientas.</p>
+                    </article>
+                    <article class="card abt">
+                        <h3>Lo que viene</h3>
+                        <p>Quiero seguir creciendo como creador y desarrollador, impulsar mis proyectos y formar una comunidad. <span class="closing">Aún queda mucho por hacer, y espero que quienes me acompañan desde el principio y quienes apenas me descubren sean parte de lo que viene.</span></p>
+                    </article>
+                    <article class="card abt abt-wide">
+                        <h3>Mi sponsor</h3>
+                        <p>Desde el <strong>22 de noviembre de 2026</strong> mi canal está patrocinado por <a class="hl" href="https://nopi.ng/zansumi" target="_blank" rel="noopener sponsored">NoPing</a>. Boostea tus FPS, mejora tu ping y tu conexión en juegos como Valorant, Minecraft, Fortnite y más.</p>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROYECTOS (web + precios + Minecraft) -->
+    <section class="panel" id="v-proyectos" hidden>
+        <div class="head"><h2>Proyectos</h2><p>Páginas web a medida y servidores de Minecraft.</p></div>
+        <div class="split">
+            <div class="side">
+                <h3 class="sh">Desarrollo web</h3>
+                <p class="wide">Creo páginas web a medida: funcionales, atractivas y fáciles de usar, adaptadas a la identidad de cada cliente. Me escribes tu idea, acordamos secciones y precio, y te entrego tu página publicada.</p>
+                <div class="card price">
+                    <span class="what">Portafolio o web</span>
+                    <div class="amt">$7–10<small>USD</small></div>
+                    <span class="note">El precio final depende de las secciones</span>
+                    <ul class="list">
+                        <li>Se ve bien en celular y PC</li>
+                        <li>Las secciones que elijas</li>
+                        <li>Tus colores, logo y textos</li>
+                        <li>Publicada gratis en GitHub Pages</li>
+                    </ul>
+                    <a class="btn solid" href="/contacto/" data-nav="contacto">Pedir una comisión</a>
+                </div>
+            </div>
+            <div class="sites">
+            <a class="card site" style="--logo:url('assets/avatars/avatar.png')" href="https://zansumi.github.io/kafuvevo/" target="_blank" rel="noopener">
+                <div class="shot"><span class="new">Nuevo</span><div class="bar">zansumi.github.io/kafuvevo</div><div class="fview"><iframe loading="lazy" sandbox="allow-scripts allow-same-origin" data-src="https://zansumi.github.io/kafuvevo/" tabindex="-1" title="Vista previa de Kafuvevo"></iframe></div></div>
+                <div class="meta"><h3>Kafuvevo</h3><p>Trabajo reciente</p></div></a>
+            <a class="card site" style="--logo:url('assets/avatars/logopage.png')" href="https://mira.carbonzdev.me/#launcher" target="_blank" rel="noopener">
+                <div class="shot"><span class="new">Nuevo</span><div class="bar">mira.carbonzdev.me</div><div class="fview"><iframe loading="lazy" sandbox="allow-scripts allow-same-origin" data-src="https://mira.carbonzdev.me/#launcher" tabindex="-1" title="Vista previa de Mira"></iframe></div></div>
+                <div class="meta"><h3>Mira</h3><p>Trabajo reciente</p></div></a>
+            <a class="card site" style="--logo:url('assets/avatars/lmcstudios.png')" href="https://zansumi.github.io/LMC-STUDIOS/" target="_blank" rel="noopener">
+                <div class="shot"><div class="bar">zansumi.github.io/LMC-STUDIOS</div><div class="fview"><iframe loading="lazy" sandbox="allow-scripts allow-same-origin" data-src="https://zansumi.github.io/LMC-STUDIOS/" tabindex="-1" title="Vista previa de LMC Studios"></iframe></div></div>
+                <div class="meta"><h3>LMC Studios™</h3><p>Novedades, sponsors y proyectos</p></div></a>
+            <a class="card site" style="--logo:url('assets/avatars/BLOGOLMC2.png')" href="https://team-lmc-oficial.github.io/" target="_blank" rel="noopener">
+                <div class="shot"><div class="bar">team-lmc-oficial.github.io</div><div class="fview"><iframe loading="lazy" sandbox="allow-scripts allow-same-origin" data-src="https://team-lmc-oficial.github.io/" tabindex="-1" title="Vista previa de Team LMC"></iframe></div></div>
+                <div class="meta"><h3>Team LMC™</h3><p>Equipo, novedades y contenido</p></div></a>
+            <a class="card site" style="--logo:url('assets/avatars/relamgif.gif')" href="https://zansumi.github.io/RelamLOL/" target="_blank" rel="noopener">
+                <div class="shot"><div class="bar">zansumi.github.io/RelamLOL</div><div class="fview"><iframe loading="lazy" sandbox="allow-scripts allow-same-origin" data-src="https://zansumi.github.io/RelamLOL/" tabindex="-1" title="Vista previa de RelamLOL"></iframe></div></div>
+                <div class="meta"><h3>RelamLOL</h3><p>Portafolio de diseño gráfico para Minecraft</p></div></a>
+            <a class="card site" style="--logo:url('assets/avatars/bandejita.png')" href="https://zansumi.github.io/Bandejita/" target="_blank" rel="noopener">
+                <div class="shot"><div class="bar">zansumi.github.io/Bandejita</div><div class="fview"><iframe loading="lazy" sandbox="allow-scripts allow-same-origin" data-src="https://zansumi.github.io/Bandejita/" tabindex="-1" title="Vista previa de Bandejita Paisa"></iframe></div></div>
+                <div class="meta"><h3>Bandejita Paisa</h3><p>Portafolio de arte gráfico y proyectos</p></div></a>
+        </div>
+        </div>
+        <div class="split">
+            <div class="side">
+                <h3 class="sh">Servidores de Minecraft</h3>
+                <p class="wide">Creo, configuro y personalizo servidores con plugins, mods y recursos públicos, y tengo conocimientos básicos para crear plugins propios. Mi enfoque: soluciones prácticas que convierten la idea de cada comunidad en una experiencia jugable.</p>
+                <div class="card price">
+                    <span class="what">Eventos y servidores de Minecraft</span>
+                    <div class="amt">LMC Studios<small>™</small></div>
+                    <span class="note">¿Quieres que te desarrolle un evento o una configuración? Trabaja con mi estudio</span>
+                    <ul class="list">
+                        <li>Eventos de Minecraft a tu medida</li>
+                        <li>Configuración de servidores</li>
+                        <li>Plugins, mods y sistemas personalizados</li>
+                        <li>Experiencias pensadas para tu comunidad</li>
+                    </ul>
+                    <a class="btn solid" href="https://lmcstudios.art" target="_blank" rel="noopener">Trabaja con mi estudio</a>
+                </div>
+            </div>
+            <div class="tiles">
+            <div class="card proj"><a class="plink" href="https://lmcstudios.art/proyecto/zanfirxz" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/zanfrixz.png" alt="" data-m="Z"></div><h3>ZanFirxz Network</h3></a><a class="btn solid" href="https://lmcstudios.art/proyecto/zanfirxz" target="_blank" rel="noopener">Ver proyecto</a></div>
+            <div class="card proj"><a class="plink" href="https://lmcstudios.art/proyecto/sumixcraft" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/sm.png" alt="" data-m="S"></div><h3>SumixCraft</h3></a><a class="btn solid" href="https://lmcstudios.art/proyecto/sumixcraft" target="_blank" rel="noopener">Ver proyecto</a></div>
+            <div class="card proj"><a class="plink" href="https://lmcstudios.art/proyecto/oshanzumi" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/oshanzumi.png" alt="" data-m="O"></div><h3>OshanZumi</h3></a><a class="btn solid" href="https://lmcstudios.art/proyecto/oshanzumi" target="_blank" rel="noopener">Ver proyecto</a></div>
+            <div class="card proj"><a class="plink" href="https://lmcstudios.art/proyecto/hardcore-of-elite" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/logo2he.png" alt="" data-m="H"></div><h3>Hardcore Of Elite</h3></a><a class="btn solid" href="https://lmcstudios.art/proyecto/hardcore-of-elite" target="_blank" rel="noopener">Ver proyecto</a></div>
+            <div class="card proj"><a class="plink" href="https://lmcstudios.art/proyecto/exodo-smp" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/a (1).png" alt="" data-m="E"></div><h3>EXODO SMP</h3></a><a class="btn solid" href="https://lmcstudios.art/proyecto/exodo-smp" target="_blank" rel="noopener">Ver proyecto</a></div>
+            <div class="card proj"><a class="plink" href="https://lmcstudios.art/proyecto/team-lmcraft-roleplay" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/TEAM LMC NEW - 2026.png" alt="" data-m="R"></div><h3>Team LMCraft Roleplay</h3></a><a class="btn solid" href="https://lmcstudios.art/proyecto/team-lmcraft-roleplay" target="_blank" rel="noopener">Ver proyecto</a></div>
+            <div class="card proj"><a class="plink" href="https://lmcstudios.art/proyecto/lmc-project" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/logo.png" alt="" data-m="L"></div><h3>LMC Project</h3></a><a class="btn solid" href="https://lmcstudios.art/proyecto/lmc-project" target="_blank" rel="noopener">Ver proyecto</a></div>
+            <div class="card proj"><a class="plink" href="https://lmcstudios.art/proyecto/skyblock-de-los-panas" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/image-removebg-preview_4.png" alt="" data-m="S"></div><h3>Skyblock de los Panas</h3></a><a class="btn solid" href="https://lmcstudios.art/proyecto/skyblock-de-los-panas" target="_blank" rel="noopener">Ver proyecto</a></div>
+            <div class="card proj"><a class="plink" href="https://lmcstudios.art/proyecto/deadlands-smp" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/COMISION_ANDREUS_WASA.png" alt="" data-m="D"></div><h3>DeadLands SMP</h3></a><a class="btn solid" href="https://lmcstudios.art/proyecto/deadlands-smp" target="_blank" rel="noopener">Ver proyecto</a></div>
+            <div class="card proj"><a class="plink" href="https://lmcstudios.art/proyecto/pedsafio" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/pedaafio2026.png" alt="" data-m="P"></div><h3>PEDSAFIO</h3></a><a class="btn solid" href="https://lmcstudios.art/proyecto/pedsafio" target="_blank" rel="noopener">Ver proyecto</a></div>
+            <div class="card proj"><a class="plink" href="https://lmcstudios.art/proyecto/destruye-el-nexus" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/destruyeelnexus.png" alt="" data-m="N"></div><h3>Destruye el Nexus</h3></a><a class="btn solid" href="https://lmcstudios.art/proyecto/destruye-el-nexus" target="_blank" rel="noopener">Ver proyecto</a></div>
+            <div class="card proj"><a class="plink" href="https://lmcstudios.art/proyecto/lmc-battles" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/buildbate.png" alt="" data-m="B"></div><h3>LMC Battles</h3></a><a class="btn solid" href="https://lmcstudios.art/proyecto/lmc-battles" target="_blank" rel="noopener">Ver proyecto</a></div>
+            <div class="card proj"><a class="plink" href="https://lmcstudios.art/proyecto/zoulcraft" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/zoulcraft.gif" alt="" data-m="Z"></div><h3>ZoulCraft</h3></a><a class="btn solid" href="https://lmcstudios.art/proyecto/zoulcraft" target="_blank" rel="noopener">Ver proyecto</a></div>
+        </div>
+        </div>
+    </section>
+
+    <!-- CONTENIDO -->
+    <section class="panel" id="v-contenido" hidden>
+        <div class="head"><h2>Contenido</h2><p>Mis directos, videos y clips más recientes.</p></div>
+        <div>
+            <p class="cap">Streams</p>
+            <div class="lives">
+                <div class="card clip"><div class="tag"><span class="chip">Twitch</span></div><iframe data-src="https://player.twitch.tv/?channel=zansumi&parent=zansumi.github.io&parent=localhost&autoplay=false&muted=true" title="Twitch de Zansumi" allowfullscreen></iframe></div>
+                <div class="card clip"><div class="tag"><span class="chip">Kick</span></div><iframe data-src="https://player.kick.com/zansumi?autoplay=false&muted=true" title="Kick de Zansumi" allowfullscreen></iframe></div>
+            </div>
+        </div>
+        <div>
+            <p class="cap">YouTube</p>
+            <div class="vids">
+                <div class="card clip hot"><div class="tag"><span class="chip pop">★ Más popular</span></div><button class="facade" type="button" data-src="https://www.youtube.com/embed/O4l7C0om7Qs" data-yt="O4l7C0om7Qs" data-title="Video de YouTube" aria-label="Reproducir"><span>Toca para reproducir</span></button></div>
+                <div class="card clip"><div class="tag"><span class="chip">Reciente</span></div><button class="facade" type="button" data-src="https://www.youtube.com/embed/fnF8nFIpHXc" data-yt="fnF8nFIpHXc" data-title="Video de YouTube" aria-label="Reproducir"><span>Toca para reproducir</span></button></div>
+                <div class="card clip"><div class="tag"><span class="chip">Reciente</span></div><button class="facade" type="button" data-src="https://www.youtube.com/embed/aA1dox_ek_U" data-yt="aA1dox_ek_U" data-title="Video de YouTube" aria-label="Reproducir"><span>Toca para reproducir</span></button></div>
+            </div>
+        </div>
+        <div>
+            <p class="cap">TikTok</p>
+            <div class="tts">
+                <div class="card clip"><div class="tag"><span class="chip">Reciente</span></div><button class="facade" type="button" data-src="https://www.tiktok.com/embed/v2/7699197973623754004" data-title="Video de TikTok" aria-label="Reproducir"><span>Toca para cargar</span></button></div>
+                <div class="card clip"><div class="tag"><span class="chip">Reciente</span></div><button class="facade" type="button" data-src="https://www.tiktok.com/embed/v2/7684908003136392469" data-title="Video de TikTok" aria-label="Reproducir"><span>Toca para cargar</span></button></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SETUP -->
+    <section class="panel" id="v-setup" hidden>
+        <div class="head"><h2>Mi setup</h2></div>
+        <div>
+            <p class="cap">PC</p>
+            <div class="tiles n6">
+                <a class="card part" href="https://www.mercadolibre.com.mx/amd-ryzen-5-4600g-6-core-12-thread-processor/p/MLM2093441754" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/cpu.png" alt="" data-m="CPU"></div><span class="lbl">Procesador</span><h3>AMD Ryzen 5 4600G</h3><p>&nbsp;</p></a>
+                <a class="card part" href="https://latam.msi.com/Motherboard/B450M-A-PRO-MAX-II" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/moder.png" alt="" data-m="MB"></div><span class="lbl">Placa madre</span><h3>MSI B450 A PRO MAX</h3><p>&nbsp;</p></a>
+                <a class="card part" href="https://www.cyberpuerta.mx/Computo-Hardware/Memorias-RAM-y-Flash/Memorias-RAM-para-PC/Memoria-RAM-Kingston-ValueRAM-DDR4-3200MHz-8GB-CL22-Verde.html" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/ram.png" alt="" data-m="RAM"></div><span class="lbl">Memoria RAM</span><h3>8 GB DDR4</h3><p>3200 MHz</p></a>
+                <div class="card part"><div class="thumb"><img src="assets/avatars/ram.png" alt="" data-m="RAM"></div><span class="lbl">Memoria RAM 2</span><h3>16 GB DDR4</h3><p>3200 MHz</p></div>
+                <a class="card part" href="https://www.amazon.com.mx/Team-T253X6512G0C101-Unidad-interna-estado/dp/B08K3NP2LK" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/alma.png" alt="" data-m="SSD"></div><span class="lbl">Almacenamiento</span><h3>Team Group GX2</h3><p>SSD 500 GB</p></a>
+                <a class="card part" href="https://www.amazon.com.mx/Tarjeta-Gr%C3%A1fica-Ventiladores-Refrigeraci%C3%B3n-Computadora/dp/B0BP7CX8DR?source=ps-sl-shoppingads-lpcontext&psc=1&smid=A3AJC7HAKFC86W" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/gpu.png" alt="" data-m="GPU"></div><span class="lbl">Tarjeta gráfica</span><h3>SOYO Radeon RX 580</h3><p>8 GB 2048SP</p></a>
+            </div>
+        </div>
+        <div>
+            <p class="cap">Periféricos</p>
+            <div class="tiles">
+                <a class="card part" href="https://www.mercadolibre.com.mx/raton-razer-essential-deathadder-negro/p/MLM6214305?pdp_filters=item_id:MLM4587521234&sid=purchases" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/mouse.png" alt="" data-m="M"></div><span class="lbl">Mouse</span><h3>Razer DeathAdder Essential</h3><p>&nbsp;</p></a>
+                <a class="card part" href="https://articulo.mercadolibre.com.mx/MLM-1919940171-terport-teclado-mecanico-gamer-60-z11-e19-luz-amarilla-con-switch-huano-red-hotswap-61-teclas-ingles-anti-ghosting-color-negrogris-negrogris-red-switch-ingles-ingles-us-_JM?sid=purchases" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/tecla.png" alt="" data-m="KB"></div><span class="lbl">Teclado</span><h3>TERPORT 60%</h3><p>&nbsp;</p></a>
+                <a class="card part" href="https://articulo.mercadolibre.com.mx/MLM-3388911358-monitor-gamer-xundefined-x250gf18-25-fhd-180hz-bocina-ips-_JM?sid=purchases" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/monitor.png" alt="" data-m="M1"></div><span class="lbl">Monitor 1</span><h3>XUNDEFINED</h3><p>24" · 1080p · 180 Hz</p></a>
+                <a class="card part" href="https://www.amazon.com.mx/dp/B0CR6NCKVQ" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/monitor1.png" alt="" data-m="M2"></div><span class="lbl">Monitor 2</span><h3>QTouch</h3><p>24" · 1080p · 60 Hz</p></a>
+                <a class="card part" href="https://www.amazon.com.mx/dp/B0BJVDRSSZ" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/microfono.png" alt="" data-m="MIC"></div><span class="lbl">Micrófono</span><h3>BM-800</h3><p>&nbsp;</p></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="panel" id="v-contacto" hidden>
+        <div class="head"><h2>Contacto</h2><p>¿Una comisión, una colaboración o solo saludar? Escríbeme.</p></div>
+        <div class="cgrid">
+            <div class="card cc">
+                <div class="cico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
+                <span class="lbl">Correo</span>
+                <span class="cval">zansumi234@outlook.com</span>
+                <div class="row"><button class="btn solid" type="button" data-copy="zansumi234@outlook.com">Copiar correo</button><a class="btn" href="mailto:zansumi234@outlook.com">Enviar correo</a></div>
+            </div>
+            <div class="card cc">
+                <div class="cico"><img src="assets/avatars/discord.png" alt="" onerror="this.replaceWith(document.createTextNode('D'))"></div>
+                <span class="lbl">Discord</span>
+                <span class="cval">zansumi</span>
+                <div class="row"><button class="btn solid" type="button" data-copy="zansumi">Copiar Discord</button><a class="btn" href="https://discord.gg/WaYUTm4CG3" target="_blank" rel="noopener">Ver servidor</a></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 404 -->
+    <section class="panel nf" id="v-404" hidden>
+        <div class="big">404</div>
+        <div class="head"><h2>Esta página no existe</h2><p>Revisa la dirección o vuelve al inicio.</p></div>
+        <div class="row"><a class="btn solid" href="/" data-nav="inicio">Ir al inicio</a></div>
+    </section>
+</main>
+
+<div class="enter" id="enter" role="button" tabindex="0" aria-label="Click to enter"><span>click to enter...</span></div>
+
+<div class="player" id="player">
+    <button class="eq" id="peq" aria-label="Mostrar controles"><i></i><i></i><i></i><i></i></button>
+    <button id="pplay" aria-label="Reproducir"></button>
+    <div class="more">
+        <span class="ptitle" id="ptitle">Música</span>
+        <button id="pprev" aria-label="Anterior"><svg viewBox="0 0 24 24"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg></button>
+        <button id="pnext" aria-label="Siguiente"><svg viewBox="0 0 24 24"><path d="M16 5h2v14h-2zM4 5v14l11-7z"/></svg></button>
+        <button id="plbtn" aria-label="Ver playlist"><svg viewBox="0 0 24 24"><path d="M3 6h13v2H3zM3 11h13v2H3zM3 16h8v2H3zM18 5v10.3A3 3 0 1 0 20 18V8h3V5z"/></svg></button>
+        <button id="pmute" aria-label="Silenciar"></button>
+        <input type="range" id="pvol" min="0" max="100" value="30" aria-label="Volumen">
+    </div>
+    <div class="pl-pop" id="plpop"><div class="pnow"><div class="vinyl"></div><div><small>Sonando ahora</small><strong id="pnow">Dale play</strong>
+        <div class="pctl"><button id="plPlay">Play / Pausa</button><button id="plShuf">Mezclar</button></div></div></div><ol id="plist"></ol></div>
+</div>
+
+<a class="next" id="next" href="/sobre-mi/" data-nav="sobre-mi" title="Siguiente"><span id="nextLbl">Siguiente</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+
+<aside class="spbadge" id="spBadge" aria-label="Sponsor NoPing">
+    <button class="spb-x" id="spbX" type="button" aria-label="Cerrar">×</button>
+    <a class="spb-a" data-sponsor>
+        <div class="sp-media"><video src="assets/nping.webm#t=0.1" muted loop playsinline preload="metadata" aria-hidden="true" tabindex="-1"></video></div>
+        <div class="spb-t"><span class="sp-k">Sponsor</span><strong>NoPing</strong><span>Boostea tus FPS y mejora tu ping</span></div>
+    </a>
+</aside>
+
+<aside class="fact" id="fact" hidden role="status" aria-live="polite">
+    <button class="fact-x" id="factX" type="button" aria-label="Cerrar">×</button>
+    <div class="fact-k"><i></i><span>¿Sabías que…?</span><span id="factE"></span></div>
+    <h4 id="factT"></h4>
+    <p id="factP"></p>
+    <a class="btn solid" href="/sobre-mi/" data-nav="sobre-mi">Ver más</a>
+    <div class="fact-bar"></div>
+</aside>
+
+<footer>© 2026 Zansumi · Hecho en México con mucho Minecraft y café</footer>
+
+<script>
+/* ============ RUTAS LIMPIAS + PESTAÑAS ============ */
+(function(){
+var TITLES={inicio:'Zansumi | Creador de contenido','sobre-mi':'Sobre mí | Zansumi',proyectos:'Proyectos | Zansumi',contenido:'Contenido | Zansumi',setup:'Setup | Zansumi',contacto:'Contacto | Zansumi','404':'404 | Zansumi'};
+var SITE="https://zansumi.github.io";
+/*DD-START*/var DD={"inicio": {"t": "Zansumi | Creador de contenido", "d": "Creador de contenido. Hago streams, armo eventos de Minecraft y desarrollo servidores y páginas web."}, "sobre-mi": {"t": "Sobre mí | Zansumi", "d": "Soy Zansumi, creador de contenido de México apasionado por los videojuegos, la tecnología y el desarrollo de proyectos digitales. Conoce mi trayectoria."}, "proyectos": {"t": "Proyectos | Zansumi", "d": "Páginas web a medida y servidores de Minecraft. Portafolios y sitios desde $7–10 USD, publicados gratis en GitHub Pages."}, "contenido": {"t": "Contenido | Zansumi", "d": "Mis directos, videos y clips más recientes en Twitch, Kick, YouTube y TikTok."}, "setup": {"t": "Setup | Zansumi", "d": "Mi setup para crear contenido: PC con Ryzen 5 4600G y RX 580 de 8 GB, periféricos, monitores y micrófono."}, "contacto": {"t": "Contacto | Zansumi", "d": "¿Una comisión, una colaboración o solo saludar? Escríbeme por correo o Discord."}};/*DD-END*/
+function meta(k){var d=DD[k];if(!d)return;var u=SITE+urlOf(k),q=function(sel,v,a){var m=document.querySelector(sel);if(m)m.setAttribute(a||'content',v)};
+q('meta[name=description]',d.d);q('link[rel=canonical]',u,'href');
+q('meta[property="og:url"]',u);q('meta[property="og:title"]',d.t);q('meta[property="og:description"]',d.d);
+q('meta[name="twitter:title"]',d.t);q('meta[name="twitter:description"]',d.d)}
+var ORDER=['inicio','sobre-mi','proyectos','contenido','setup','contacto'];
+var NAMES={inicio:'Inicio','sobre-mi':'Sobre mí',proyectos:'Proyectos',contenido:'Contenido',setup:'Setup',contacto:'Contacto'};
+var view=document.getElementById('view'),cur='inicio',counted=false;
+function urlOf(k){return k==='inicio'?'/':'/'+k+'/'}
+function fromPath(){
+    var p=decodeURIComponent(location.pathname).toLowerCase().replace(/index\.html$/,'').replace(/^\/+|\/+$/g,'');
+    if(p===''){var h=location.hash.replace(/^#\/?/,'').split('/')[0].toLowerCase();if(h)p=h}/* enlaces viejos con # */
+    else p=p.split('/')[0];
+    if(p==='historia')p='sobre-mi';
+    if(p==='streams')p='contenido';
+    if(p==='amigos')p='';
+    if(p==='comisiones'||p==='precios')p='proyectos';
+    if(p==='')return 'inicio';
+    return TITLES[p]&&p!=='404'?p:'404';
+}
+function fit(){document.querySelectorAll('#v-proyectos .fview').forEach(function(v){var f=v.firstElementChild;if(v.clientWidth)f.style.transform='scale('+(v.clientWidth/1440)+')'})}
+var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var f=e.target;io.unobserve(f);if(f.dataset.src){f.src=f.dataset.src;f.removeAttribute('data-src')}}})},{root:view,rootMargin:'200px'}):null;
+function lazy(panel){return;if((matchMedia('(max-width:860px),(pointer:coarse)').matches||document.documentElement.classList.contains('lite')))return;panel.querySelectorAll('iframe[data-src]').forEach(function(f){if(io)io.observe(f);else{f.src=f.dataset.src;f.removeAttribute('data-src')}})}
+function count(el){
+    var to=+el.dataset.count,s=performance.now(),d=1400;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches){el.textContent=to;return}
+    (function step(n){var p=Math.min((n-s)/d,1);el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(step)})(s);
+}
+function _show(k){
+    cur=k;
+    document.querySelectorAll('.panel').forEach(function(p){
+        var on=p.id==='v-'+k;p.hidden=!on;p.classList.toggle('show',on);
+    });
+    document.querySelectorAll('[data-nav]').forEach(function(a){
+        if(a.closest('#tabs')){if(a.dataset.nav===k)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')}
+    });
+    document.title=TITLES[k]||TITLES['404'];meta(k);
+    view.scrollTop=0;
+    var panel=document.getElementById('v-'+k);
+    panel.querySelectorAll('.tiles>*,.sites>*,.pricing>*,.trio>*,.vids>*,.lives>*,.tts>*,.cgrid>*').forEach(function(el,i){el.style.setProperty('--i',i)});
+    var nx=document.getElementById('next'),ix=ORDER.indexOf(k);
+    if(ix<0)nx.hidden=true;
+    else{var n=ORDER[(ix+1)%ORDER.length];nx.hidden=false;nx.dataset.nav=n;nx.setAttribute('href',urlOf(n));nx.title='Ir a '+NAMES[n];document.getElementById('nextLbl').textContent=n==='inicio'?'Inicio':'Siguiente'}
+    if(k==='proyectos')lazy(panel);
+    if(k==='contenido')panel.querySelectorAll('iframe[data-src]').forEach(function(f){f.src=f.dataset.src;f.removeAttribute('data-src')});
+    if(k==='proyectos')fit();
+    if(k==='inicio'&&!counted){counted=true;document.querySelectorAll('[data-count]').forEach(count)}
+    document.dispatchEvent(new CustomEvent('viewchange',{detail:k}));
+}
+var first=true,busy,topbar=document.querySelector('.top');
+function show(k){
+    var old=document.querySelector('.panel.show');
+    if(first||!old||old.id==='v-'+k||matchMedia('(prefers-reduced-motion: reduce)').matches){first=false;_show(k);return}
+    topbar.classList.remove('go');void topbar.offsetWidth;topbar.classList.add('go');
+    old.classList.add('leaving');clearTimeout(busy);
+    busy=setTimeout(function(){old.classList.remove('leaving');_show(k)},190);
+}
+function go(k){
+    var u=urlOf(k);if(location.pathname!==u)history.pushState(null,'',u);
+    show(k);
+}
+document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[data-nav]');
+    if(!a||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button)return;
+    e.preventDefault();go(a.dataset.nav);
+});
+addEventListener('popstate',function(){var k=fromPath();if(k!==cur)show(k)});
+addEventListener('resize',fit);
+/* los links de las pestañas apuntan a la ruta real (sin #) */
+document.querySelectorAll('a[data-nav]').forEach(function(a){a.setAttribute('href',urlOf(a.dataset.nav))});
+/* limpia la URL: alias viejos (/historia, #proyectos) -> ruta real; una ruta que no existe se queda y muestra la 404 */
+var k0=fromPath();if(k0!=='404'&&(location.pathname!==urlOf(k0)||location.hash))history.replaceState(null,'',urlOf(k0));
+show(k0);
+})();
+
+/* ============ DETALLES ============ */
+(function(){
+/* si falta una imagen, se muestra una marca con letras */
+function fb(img,cls,txt){var d=document.createElement('div');d.className=cls;d.textContent=txt;img.replaceWith(d)}
+document.querySelectorAll('.thumb img').forEach(function(i){function f(){fb(i,'mark',i.dataset.m||'?')}i.addEventListener('error',f);if(i.complete&&i.naturalWidth===0)f()});
+document.querySelectorAll('.social img').forEach(function(i){function f(){fb(i,'fb',i.dataset.f||'?')}i.addEventListener('error',f);if(i.complete&&i.naturalWidth===0)f()});
+var bg=document.getElementById('heroBg');if(bg)bg.addEventListener('error',function(){bg.remove()});
+var MOB=matchMedia('(max-width:860px),(pointer:coarse)').matches;
+/* en celular el fondo se queda quieto (primer cuadro del GIF) para no lagear */
+function freeze(img){try{var c=document.createElement('canvas');c.width=img.naturalWidth;c.height=img.naturalHeight;c.getContext('2d').drawImage(img,0,0);img.src=c.toDataURL('image/jpeg',.82)}catch(e){}}
+if(bg&&MOB){if(bg.complete&&bg.naturalWidth)freeze(bg);else bg.addEventListener('load',function(){freeze(bg)},{once:true})}
+
+/* video de fondo (si falla, queda el GIF) */
+(function(){
+    var VIDEO_URL='https://res.cloudinary.com/jg3lqg8g/video/upload/v1791845206/1012_1.mp4';
+    var box=document.getElementById('heroVideo');
+    if(!box||!VIDEO_URL)return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches||MOB)return;
+    var v=document.createElement('video');
+    v.muted=true;v.defaultMuted=true;v.loop=true;v.autoplay=true;v.playsInline=true;v.preload='auto';
+    v.setAttribute('muted','');v.setAttribute('playsinline','');v.setAttribute('aria-hidden','true');
+    v.src=VIDEO_URL;
+    v.addEventListener('playing',function(){setTimeout(function(){box.classList.add('on')},300);setTimeout(function(){if(bg)bg.remove()},2000)});
+    v.addEventListener('error',function(){v.remove()});
+    box.appendChild(v);
+    var pr=v.play();if(pr&&pr.catch)pr.catch(function(){});
+})();
+})();
+</script>
+<script>
+/* ============ MÚSICA ============
+   Sube tus .mp3 a assets/music/ y escribe cada archivo en la lista.
+   Para otro título: 'archivo.mp3|Título bonito'. El orden es aleatorio. */
+(function(){
+var files=[
+    'cancion1.mp3|Infynity Repiting DAFT PUNK',
+    'cancion2.mp3|Die For You VALORANT',
+    'cancion3.mp3|El Telefono EL FATHER WISIN Y YANDEL',
+    'cancion5.mp3|Milloneta VICTOR MENDIVIL',
+    'cancion6.mp3|FOREVER MURDER DRONES',
+    'cancion7.mp3|Salgo pa la calle DADDY YANKEE RANDY',
+    'cancion8.mp3|Solos PLAN B TONY DIZE',
+    'cancion9.mp3|Mayor Que Yo WISIN Y YANDEL'
+];
+var tracks=files.map(function(f){
+    var p=f.split('|'),name=p[0].trim();
+    return {s:'assets/music/'+encodeURI(name),t:(p[1]||name.replace(/\.[^.]+$/,'').replace(/[-_]+/g,' ')).trim()};
+});
+var P=document.getElementById('player'),a=new Audio(),order=[],pos=0,last=-1,fails=0,auto=true;
+var T=document.getElementById('ptitle'),bp=document.getElementById('pplay'),bm=document.getElementById('pmute'),v=document.getElementById('pvol');
+var ICON={
+ play:'<svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg>',
+ pause:'<svg viewBox="0 0 24 24"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>',
+ vol:'<svg viewBox="0 0 24 24"><path d="M16 8a5 5 0 0 1 0 8M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3 9v6h4l5 4V5L7 9z"/></svg>',
+ mute:'<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 4V5L7 9z"/><path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>'
+};
+function shuffle(){
+    order=tracks.map(function(_,k){return k});
+    for(var k=order.length-1;k>0;k--){var j=Math.floor(Math.random()*(k+1));var t=order[k];order[k]=order[j];order[j]=t}
+    if(order.length>1&&order[0]===last){var t2=order[0];order[0]=order[1];order[1]=t2}
+}
+function sync(){
+    P.classList.toggle('playing',!a.paused);
+    bp.innerHTML=a.paused?ICON.play:ICON.pause;
+    bp.setAttribute('aria-label',a.paused?'Reproducir':'Pausar');
+    bm.innerHTML=(a.muted||a.volume===0)?ICON.mute:ICON.vol;
+}
+function load(p,play){
+    if(p>=order.length){last=order[order.length-1];shuffle();p=0}
+    if(p<0)p=order.length-1;
+    pos=p;var tr=tracks[order[pos]];
+    a.src=tr.s;T.textContent=tr.t;
+    if(play)a.play().catch(function(){});
+}
+var saved=30;try{var q=localStorage.getItem('zv');if(q!==null)saved=+q}catch(e){}
+v.value=saved;a.volume=saved/100;
+v.addEventListener('input',function(){a.volume=v.value/100;a.muted=false;try{localStorage.setItem('zv',v.value)}catch(e){}sync()});
+bm.addEventListener('click',function(){a.muted=!a.muted;sync()});
+bp.addEventListener('click',function(){auto=false;a.paused?a.play().catch(function(){}):a.pause()});
+document.getElementById('pnext').addEventListener('click',function(){auto=false;load(pos+1,true)});
+document.getElementById('pprev').addEventListener('click',function(){auto=false;load(pos-1,true)});
+document.getElementById('peq').addEventListener('click',function(){P.classList.toggle('open')});
+a.addEventListener('play',sync);a.addEventListener('pause',sync);a.addEventListener('volumechange',sync);
+a.addEventListener('ended',function(){load(pos+1,true)});
+a.addEventListener('loadedmetadata',function(){fails=0;sync()});
+a.addEventListener('error',function(){
+    fails++;
+    if(fails>=tracks.length){T.textContent='No encuentro las canciones';console.warn('No se encontró ninguna canción. Revisa assets/music/ y los nombres.');return}
+    load(pos+1,!a.paused||auto);
+});
+/* intenta sonar apenas carga; si el navegador lo bloquea, reintenta en cada gesto */
+var EVS=['pointerdown','pointerup','touchend','click','keydown'];
+function unbind(){EVS.forEach(function(ev){removeEventListener(ev,first,true)})}
+function first(e){
+    if(!auto){unbind();return}
+    if(e.target.closest&&e.target.closest('#player'))return;
+    a.play().then(function(){auto=false;unbind()}).catch(function(){});
+}
+EVS.forEach(function(ev){addEventListener(ev,first,true)});
+/* pantalla de entrada: el click da permiso para reproducir */
+var E=document.getElementById('enter');
+document.body.classList.add('locked');
+function enter(){
+    if(!E)return;
+    auto=false;unbind();
+    a.play().catch(function(){});
+    E.classList.add('out');document.body.classList.remove('locked');
+    var X=E;E=null;setTimeout(function(){X.remove()},900);
+}
+E.addEventListener('click',enter);
+E.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();enter()}});
+E.focus();
+shuffle();load(0,false);
+a.play().then(function(){auto=false;unbind()}).catch(function(){P.classList.add('wait');P.title='Toca la página para activar la música'});
+a.addEventListener('play',function(){P.classList.remove('wait')});
+/* playlist */
+var L=document.getElementById('plist'),N=document.getElementById('pnow');
+function mark(){var c=order[pos];L.querySelectorAll('li').forEach(function(li,k){li.classList.toggle('on',k===c)});N.textContent=tracks[c].t}
+tracks.forEach(function(tr,k){var li=document.createElement('li'),b=document.createElement('b'),sp=document.createElement('span');
+    b.textContent=String(k+1).padStart(2,'0');sp.textContent=tr.t;li.append(b,sp);li.tabIndex=0;
+    function go(){auto=false;load(order.indexOf(k),true)}
+    li.addEventListener('click',go);li.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}});L.appendChild(li)});
+a.addEventListener('loadstart',mark);
+document.getElementById('plPlay').addEventListener('click',function(){bp.click()});
+document.getElementById('plShuf').addEventListener('click',function(){auto=false;last=order[pos];shuffle();load(0,true)});
+var PB=document.getElementById('plbtn');
+PB.addEventListener('click',function(e){e.stopPropagation();var o=P.classList.toggle('list');PB.setAttribute('aria-expanded',o)});
+document.addEventListener('click',function(e){if(!P.contains(e.target)){P.classList.remove('list');PB.setAttribute('aria-expanded','false')}});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')P.classList.remove('list')});
+mark();sync();
+})();
+</script>
+<script>
+/* ============ CONTADOR DE VISITAS (Abacus, gratis) ============ */
+(function(){
+var NS='zansumi.github.io',KEY='zansumi-visitas';
+var base='https://abacus.jasoncameron.dev';
+var el=document.getElementById('visitsNum'),shown=0;
+try{var c0=parseInt(localStorage.getItem('zv_last'),10);if(c0>0){shown=c0;el.textContent=c0.toLocaleString('es-MX')}}catch(e){}
+function fmt(n){return n.toLocaleString('es-MX')}
+function animate(to){
+    var from=shown,t0=performance.now();shown=to;
+    try{localStorage.setItem('zv_last',String(to))}catch(e){}
+    (function step(t){
+        var k=Math.min((t-t0)/700,1);
+        el.textContent=fmt(Math.round(from+(to-from)*k));
+        if(k<1)requestAnimationFrame(step);
+    })(t0);
+}
+function jsonp(action){
+    return new Promise(function(res,rej){
+        var cb='abx'+Date.now()+Math.floor(Math.random()*1e4),sc=document.createElement('script');
+        var t=setTimeout(function(){cleanup();rej(new Error('timeout'))},8000);
+        function cleanup(){clearTimeout(t);delete window[cb];sc.remove()}
+        window[cb]=function(d){cleanup();typeof d.value==='number'?res(d.value):rej(new Error(d.error||'sin valor'))};
+        sc.onerror=function(){cleanup();rej(new Error('script bloqueado'))};
+        sc.src=base+'/'+action+'/'+NS+'/'+KEY+'?callback='+cb;
+        document.head.appendChild(sc);
+    });
+}
+function call(action){
+    return fetch(base+'/'+action+'/'+NS+'/'+KEY).then(function(r){return r.json()}).then(function(d){if(typeof d.value!=='number')throw new Error(d.error||'sin valor');return d.value})
+    .catch(function(){return jsonp(action)});
+}
+function update(){call('get').then(function(n){if(typeof n==='number'&&n!==shown)animate(n)}).catch(function(){})}
+var counted=false;try{counted=sessionStorage.getItem('zv')==='1'}catch(e){}
+call(counted?'get':'hit').then(function(n){
+    if(typeof n==='number')animate(n);
+    try{sessionStorage.setItem('zv','1')}catch(e){}
+}).catch(function(){
+    call('hit').then(function(n){if(typeof n==='number')animate(n)}).catch(function(){el.textContent='--'});
+});
+setInterval(function(){if(!document.hidden)update()},30000);
+})();
+</script>
+<script>
+/* ============ BOTONES DE COPIAR ============ */
+(function(){
+function legacy(t){var x=document.createElement('textarea');x.value=t;x.setAttribute('readonly','');x.style.cssText='position:fixed;opacity:0;top:0';document.body.appendChild(x);x.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}x.remove();return ok}
+document.addEventListener('click',function(e){
+    var b=e.target.closest&&e.target.closest('[data-copy]');if(!b)return;
+    var t=b.dataset.copy,orig=b.dataset.label||(b.dataset.label=b.textContent);
+    function done(ok){b.textContent=ok?'¡Copiado!':'No se pudo copiar';b.classList.toggle('ok',ok);clearTimeout(b._t);b._t=setTimeout(function(){b.textContent=orig;b.classList.remove('ok')},1600)}
+    if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(t).then(function(){done(true)},function(){done(legacy(t))});else done(legacy(t));
+});
+})();
+</script>
+<script>
+/* ============ FACHADAS: el video se carga al tocar ============ */
+(function(){
+document.querySelectorAll('.facade[data-yt]').forEach(function(f){f.style.backgroundImage='url(https://i.ytimg.com/vi/'+f.dataset.yt+'/hqdefault.jpg)'});
+document.addEventListener('click',function(e){
+    var f=e.target.closest&&e.target.closest('.facade');if(!f)return;
+    var i=document.createElement('iframe'),u=f.dataset.src;
+    if(f.dataset.yt)u+=(u.indexOf('?')<0?'?':'&')+'autoplay=1';
+    i.src=u;i.title=f.dataset.title||'Video';i.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';i.allowFullscreen=true;
+    f.replaceWith(i);
+});
+})();
+</script>
+<script>
+/* ============ EMOTES REBOTANDO (un solo loop, solo transform) ============ */
+(function(){
+if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+var mob=(matchMedia('(max-width:860px),(pointer:coarse)').matches||document.documentElement.classList.contains('lite'));
+var S=mob?40:56;
+var names=mob?['emo.gif','luv.png','luv.png','wmote.png']:['emo.gif','emo.gif','luv.png','luv.png','luv.png','wmote.png','wmote.png','wmote.png'];
+var layer=document.createElement('div');layer.className='emotes';layer.setAttribute('aria-hidden','true');
+document.body.insertBefore(layer,document.querySelector('header.top'));
+var W=innerWidth,H=innerHeight,items=[];
+addEventListener('resize',function(){W=innerWidth;H=innerHeight});
+names.forEach(function(n){
+    var im=new Image();im.alt='';im.draggable=false;im.decoding='async';im.style.width=S+'px';
+    var sp=35+Math.random()*40,ang=Math.random()*6.283;
+    var o={el:im,x:Math.random()*Math.max(W-S,1),y:Math.random()*Math.max(H-S,1),vx:Math.cos(ang)*sp+(Math.cos(ang)<0?-25:25),vy:Math.sin(ang)*sp+(Math.sin(ang)<0?-25:25),w:S,h:S};
+    im.addEventListener('load',function(){layer.appendChild(im);o.h=im.offsetHeight||S;items.push(o)});
+    im.src='assets/emotes/'+n;
+});
+var last=performance.now();
+function tick(t){
+    if(document.hidden){last=t;requestAnimationFrame(tick);return}
+    var dt=t-last;
+    if(mob&&dt<30){requestAnimationFrame(tick);return}
+    last=t;dt=Math.min(dt/1000,.05);
+    for(var i=0;i<items.length;i++){
+        var o=items[i];o.x+=o.vx*dt;o.y+=o.vy*dt;
+        if(o.x<0){o.x=0;o.vx=Math.abs(o.vx)}else if(o.x>W-o.w){o.x=W-o.w;o.vx=-Math.abs(o.vx)}
+        if(o.y<0){o.y=0;o.vy=Math.abs(o.vy)}else if(o.y>H-o.h){o.y=H-o.h;o.vy=-Math.abs(o.vy)}
+        o.el.style.transform='translate3d('+o.x.toFixed(1)+'px,'+o.y.toFixed(1)+'px,0)';
+    }
+    requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);
+})();
+</script>
+<script>
+/* ============ EXTRAS: progreso, luz del mouse, texto que se escribe ============ */
+(function(){
+var view=document.getElementById('view'),bar=document.getElementById('prog');
+function pr(){var m=view.scrollHeight-view.clientHeight;bar.style.setProperty('--p',m>0?Math.min(view.scrollTop/m,1):0)}
+view.addEventListener('scroll',pr,{passive:true});document.addEventListener('viewchange',function(){setTimeout(pr,60)});addEventListener('resize',pr);
+document.addEventListener('click',function(){setTimeout(pr,90)});pr();
+document.querySelectorAll('.socials>*').forEach(function(a,i){a.style.setProperty('--k',i)});
+if(matchMedia('(hover:hover) and (pointer:fine)').matches){
+    var t=0;view.addEventListener('pointermove',function(e){
+        if(t)return;
+        t=requestAnimationFrame(function(){t=0;var c=e.target.closest&&e.target.closest('.card');if(!c)return;var r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')});
+    },{passive:true});
+}
+var el=document.getElementById('typed');
+if(el&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var W=['Creo contenido y me la paso en directo.','Hago streams en Twitch y Kick.','Armo eventos y servidores de Minecraft.','Desarrollo páginas web a medida.','Creando desde 2020, desde México.'],i=0,j=0,del=false;window.__W=W;
+    function step(){
+        if(document.hidden){setTimeout(step,600);return}
+        var w=W[i];
+        if(!del){j++;el.textContent=w.slice(0,j);if(j===w.length){del=true;setTimeout(step,1900);return}setTimeout(step,45)}
+        else{j--;el.textContent=w.slice(0,j);if(j===0){del=false;i=(i+1)%W.length;setTimeout(step,320)}else setTimeout(step,22)}
+    }
+    setTimeout(function(){el.textContent='';step()},900);
+}
+})();
+</script>
+<script>
+/* ============ "¿SABÍAS QUE…?" (sale en Setup, Contenido y Proyectos; en Sobre mí no) ============ */
+(function(){
+var FACTS={
+ setup:{e:'💻',t:'Mi setup gaming',p:'Empecé creando contenido con recursos bastante limitados, desde un celular y después con una laptop de bajos recursos. Actualmente utilizo una PC con Ryzen 5 4600G y una RX 580 de 8 GB para jugar, crear contenido y hacer directos.'},
+ contenido:{e:'🎮',t:'Mi trayectoria como creador',p:'Llevo años creando contenido para YouTube. Comencé en noviembre de 2020 subiendo videos desde mi celular y, con el tiempo, fui mejorando mi equipo, mi edición y los juegos que comparto con mi comunidad.'},
+ proyectos:{e:'🧱',t:'Mis proyectos en Minecraft',p:'Además de crear contenido, fundé Team LMC en septiembre de 2024 y LMC Studios el 6 de noviembre de 2025. Con estos proyectos he buscado llevar mis ideas más allá de los videos, creando comunidades, servidores y eventos de Minecraft.'}
+};
+var box=document.getElementById('fact'),seen={},delayT,autoT,hideT,cur='';
+if(!box)return;
+function hide(){clearTimeout(delayT);clearTimeout(autoT);box.classList.remove('in');clearTimeout(hideT);hideT=setTimeout(function(){if(!box.classList.contains('in'))box.hidden=true},400)}
+function open(k){
+    if(cur!==k)return;
+    if(document.getElementById('enter')){delayT=setTimeout(function(){open(k)},800);return}
+    var f=FACTS[k];seen[k]=1;
+    document.getElementById('factE').textContent=f.e;
+    document.getElementById('factT').textContent=f.t;
+    document.getElementById('factP').textContent=f.p;
+    clearTimeout(hideT);box.hidden=false;void box.offsetWidth;box.classList.add('in');
+    autoT=setTimeout(hide,18000);
+}
+function onView(k){
+    cur=k;hide();
+    if(FACTS[k]&&!seen[k])delayT=setTimeout(function(){open(k)},2200);
+}
+document.addEventListener('viewchange',function(e){onView(e.detail)});
+document.getElementById('factX').addEventListener('click',hide);
+document.addEventListener('keydown',function(e){if(e.key==='Escape')hide()});
+var t=document.querySelector('#tabs [aria-current="page"]');onView(t?t.dataset.nav:'inicio');
+})();
+</script>
+<script>
+/* ============ MOUSE + INDICADOR DEL MENÚ ============ */
+(function(){
+/* indicador deslizante */
+var tabs=document.getElementById('tabs'),ind=document.createElement('span');ind.className='tab-ind';tabs.insertBefore(ind,tabs.firstChild);
+function place(anim){
+    var a=tabs.querySelector('[aria-current="page"]');
+    if(!a){ind.style.opacity=0;return}
+    if(!anim)ind.style.transition='none';
+    ind.style.opacity=1;ind.style.width=a.offsetWidth+'px';ind.style.transform='translateX('+a.offsetLeft+'px)';
+    if(!anim){void ind.offsetWidth;ind.style.transition=''}
+    if(tabs.scrollWidth>tabs.clientWidth)tabs.scrollTo({left:a.offsetLeft-(tabs.clientWidth-a.offsetWidth)/2,behavior:anim?'smooth':'auto'});
+}
+document.addEventListener('viewchange',function(){place(true)});
+addEventListener('resize',function(){place(false)});
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){place(false)});
+place(false);
+})();
+</script>
+<script>
+/* ============ PREVIEWS EN VIVO CON LÍMITE DE MEMORIA ============
+   PC: se cargan las webs en vivo (con sus animaciones), de a una, y solo las que se ven.
+   Hay un máximo de webs vivas a la vez (4 con 8 GB de RAM o más, 2 con menos) para no tronar el navegador.
+   Si pasas el mouse por una que está en reposo, se enciende y se apaga la más vieja.
+   Al salir de Proyectos se descargan todas. En celular o equipos muy flojos solo se muestran los logos. */
+(function(){
+var H=document.documentElement,panel=document.getElementById('v-proyectos'),view=document.getElementById('view');
+if(!panel||!('IntersectionObserver' in window))return;
+if(matchMedia('(max-width:860px),(pointer:coarse)').matches||H.classList.contains('lite'))return;
+var MAX=(navigator.deviceMemory||8)>=8?4:2;
+var frames=[].slice.call(panel.querySelectorAll('.fview iframe')),live=[],vis=new Set(),busy=false;
+frames.forEach(function(f){f._u=f.getAttribute('data-src')});
+panel.classList.toggle('pool',MAX<frames.length);
+function site(f){return f.closest('.site')}
+function unload(f){
+    f._on=0;f.src='about:blank';
+    var i=live.indexOf(f);if(i>-1)live.splice(i,1);
+    site(f).classList.remove('is-live');
+}
+function load(f,force){
+    if(f._on)return;
+    while(force&&live.length>=MAX){
+        var ev=live.filter(function(x){return !vis.has(x)})[0]||live[0];
+        ev._ev=1;unload(ev);
+    }
+    f._on=1;f.src=f._u;live.push(f);site(f).classList.add('is-live');
+}
+function pump(){
+    if(busy||live.length>=MAX)return;
+    var f=frames.filter(function(x){return vis.has(x)&&!x._on&&!x._ev})[0];
+    if(!f)return;
+    busy=true;load(f);
+    setTimeout(function(){busy=false;pump()},500);
+}
+var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+        var f=e.target;
+        if(e.isIntersecting){vis.add(f);pump()}
+        else{vis.delete(f);f._ev=0;if(f._on)unload(f);pump()}
+    });
+},{root:view,rootMargin:'150px'});
+frames.forEach(function(f){
+    io.observe(f);
+    site(f).addEventListener('mouseenter',function(){f._ev=0;if(!f._on)load(f,true)});
+});
+document.addEventListener('viewchange',function(e){
+    if(e.detail!=='proyectos'){frames.forEach(function(f){vis.delete(f);f._ev=0;if(f._on)unload(f)})}
+});
+})();
+</script>
+<style>.lang-btn{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.03);color:inherit;border-radius:999px;padding:6px 12px;font:700 .8rem/1 var(--body);letter-spacing:.04em;cursor:pointer;min-width:42px;transition:border-color .2s,background .2s}.lang-btn:hover{border-color:#c4343c}
+.rt{justify-self:end;display:flex;align-items:center;gap:8px}
+@media(max-width:860px){.rt{grid-area:visits}}
+html[lang=en] .pool .site:not(.is-live) .bar::after{content:" · hover to view live"}</style>
+<script>
+/* Idioma ES/EN: español por defecto. Para traducir más textos, agrega pares "español":"inglés" en D. */
+(function(){
+var D={"Inicio": "Home", "Sobre mí": "About me", "Contenido": "Content", "Proyectos": "Projects", "Contacto": "Contact", "Secciones": "Sections", "Visitas": "Visits", "Visitas totales de la página": "Total page visits", "Creador de contenido": "Content creator", "Creo contenido, eventos de Minecraft y más.": "I create content, Minecraft events and more.", "Ver proyectos": "View projects", "Ver contenido": "View content", "Suscriptores en YouTube": "YouTube subscribers", "Seguidores en Twitch": "Twitch followers", "Seguidores en Kick": "Kick followers", "Desarrollo web": "Web development", "Servidores": "Servers", "Hecho en México": "Made in Mexico", "Mis amigos": "My friends", "Creadores que sigo y recomiendo.": "Creators I follow and recommend.", "Logo de Zansumi": "Zansumi logo", "Sobre mí — Zansumi": "About me — Zansumi", "Mis inicios": "My beginnings", "Mis proyectos": "My projects", "¿Qué hago ahora?": "What am I up to now?", "Lo que viene": "What's next", "Páginas web a medida y servidores de Minecraft.": "Custom websites and Minecraft servers.", "Creo páginas web a medida: funcionales, atractivas y fáciles de usar, adaptadas a la identidad de cada cliente. Me escribes tu idea, acordamos secciones y precio, y te entrego tu página publicada.": "I build custom websites: functional, attractive and easy to use, tailored to each client's identity. You send me your idea, we agree on sections and price, and I deliver your published site.", "Portafolio o web": "Portfolio or website", "El precio final depende de las secciones": "Final price depends on the sections", "Se ve bien en celular y PC": "Looks great on mobile and PC", "Las secciones que elijas": "The sections you choose", "Tus colores, logo y textos": "Your colors, logo and text", "Publicada gratis en GitHub Pages": "Published for free on GitHub Pages", "Pedir una comisión": "Request a commission", "Nuevo": "New", "Trabajo reciente": "Recent work", "Novedades, sponsors y proyectos": "News, sponsors and projects", "Equipo, novedades y contenido": "Team, news and content", "Portafolio de diseño gráfico para Minecraft": "Graphic design portfolio for Minecraft", "Portafolio de arte gráfico y proyectos": "Graphic art and projects portfolio", "Servidores de Minecraft": "Minecraft servers", "Creo, configuro y personalizo servidores con plugins, mods y recursos públicos, y tengo conocimientos básicos para crear plugins propios. Mi enfoque: soluciones prácticas que convierten la idea de cada comunidad en una experiencia jugable.": "I create, configure and customize servers with plugins, mods and public resources, and I have basic knowledge to build my own plugins. My approach: practical solutions that turn each community's idea into a playable experience.", "Eventos y servidores de Minecraft": "Minecraft events and servers", "¿Quieres que te desarrolle un evento o una configuración? Trabaja con mi estudio": "Want me to develop an event or a setup for you? Work with my studio", "Eventos de Minecraft a tu medida": "Minecraft events tailored to you", "Configuración de servidores": "Server configuration", "Plugins, mods y sistemas personalizados": "Custom plugins, mods and systems", "Experiencias pensadas para tu comunidad": "Experiences designed for your community", "Trabaja con mi estudio": "Work with my studio", "Ver proyecto": "View project", "Mis directos, videos y clips más recientes.": "My latest streams, videos and clips.", "★ Más popular": "★ Most popular", "Reciente": "Recent", "Toca para reproducir": "Tap to play", "Toca para cargar": "Tap to load", "Reproducir": "Play", "Mi setup": "My setup", "Periféricos": "Peripherals", "Procesador": "Processor", "Placa madre": "Motherboard", "Memoria RAM": "RAM", "Memoria RAM 2": "RAM 2", "Almacenamiento": "Storage", "Tarjeta gráfica": "Graphics card", "Teclado": "Keyboard", "Micrófono": "Microphone", "¿Una comisión, una colaboración o solo saludar? Escríbeme.": "A commission, a collaboration or just saying hi? Write to me.", "Correo": "Email", "Copiar correo": "Copy email", "Enviar correo": "Send email", "Copiar Discord": "Copy Discord", "Ver servidor": "View server", "¡Copiado!": "Copied!", "No se pudo copiar": "Couldn't copy", "Esta página no existe": "This page doesn't exist", "Revisa la dirección o vuelve al inicio.": "Check the address or go back home.", "Ir al inicio": "Go home", "Música": "Music", "Mostrar controles": "Show controls", "Anterior": "Previous", "Siguiente": "Next", "Toca la página para activar la música": "Tap the page to enable music", "© 2026 Zansumi · Hecho en México con mucho Minecraft y café": "© 2026 Zansumi · Made in Mexico with lots of Minecraft and coffee", "Mi setup gaming": "My gaming setup", "Mi trayectoria como creador": "My journey as a creator", "Mis proyectos en Minecraft": "My Minecraft projects", "Zansumi | Creador de contenido": "Zansumi | Content creator", "Ir a Inicio": "Go to Home", "Ir a Sobre mí": "Go to About me", "Ir a Proyectos": "Go to Projects", "Ir a Contenido": "Go to Content", "Ir a Setup": "Go to Setup", "Ir a Contacto": "Go to Contact", "Empecé creando contenido con recursos bastante limitados, desde un celular y después con una laptop de bajos recursos. Actualmente utilizo una PC con Ryzen 5 4600G y una RX 580 de 8 GB para jugar, crear contenido y hacer directos.": "I started creating content with very limited resources, first from a phone and then with a low-end laptop. I currently use a PC with a Ryzen 5 4600G and an 8 GB RX 580 to play, create content and stream.", "Llevo años creando contenido para YouTube. Comencé en noviembre de 2020 subiendo videos desde mi celular y, con el tiempo, fui mejorando mi equipo, mi edición y los juegos que comparto con mi comunidad.": "I've been creating YouTube content for years. I started in November 2020 uploading videos from my phone and, over time, I improved my equipment, my editing and the games I share with my community.", "Además de crear contenido, fundé Team LMC en septiembre de 2024 y LMC Studios el 6 de noviembre de 2025. Con estos proyectos he buscado llevar mis ideas más allá de los videos, creando comunidades, servidores y eventos de Minecraft.": "Besides creating content, I founded Team LMC in September 2024 and LMC Studios on November 6, 2025. With these projects I've sought to take my ideas beyond videos, creating Minecraft communities, servers and events.", "¿SABÍAS QUE…?": "DID YOU KNOW…?", "¿Sabías que…?": "Did you know…?", "Soy Zansumi, creador de contenido de México, apasionado por los": "I'm Zansumi, a content creator from Mexico, passionate about", "videojuegos": "video games", ", la tecnología y el desarrollo de proyectos digitales. Llevo años aprendiendo por mi cuenta y compartiendo mis ideas con mi comunidad; aunque a veces parezca que somos pocos, sé que ahí están. JAJA.": ", technology and developing digital projects. I've spent years teaching myself and sharing my ideas with my community; even if it sometimes feels like we're few, I know you're there. LOL.", "Empecé en": "I started in", "noviembre de 2020": "November 2020", "subiendo videos a": "uploading videos to", "desde mi celular. En": "from my phone. In", "2021": "2021", "me regalaron una laptop humilde con Intel Celeron y con ella hice mis primeros videos de Minecraft 1.8. En": "I was given a humble laptop with an Intel Celeron and made my first Minecraft 1.8 videos with it. In", "febrero de 2024": "February 2024", "llegó mi primera PC con Ryzen y pude crear contenido de Valorant, Fortnite y más, en videos y directos.": "my first Ryzen PC arrived and I could create Valorant, Fortnite and more content, in videos and streams.", "Hoy sumo cerca de": "Today I have about", "7 años": "7 years", "en YouTube y": "on YouTube and", "4 años": "4 years", "haciendo directos en": "streaming on", "En": "In", "septiembre de 2024": "September 2024", "fundé": "I founded", "página oficial": "official site", "), un equipo para creadores, videojuegos y proyectos comunitarios. El": "), a team for creators, video games and community projects. On", "6 de noviembre de 2025": "November 6, 2025", "), un estudio de": "), a studio for", "servidores y eventos de Minecraft": "Minecraft servers and events", "Hago": "I do", "directos": "streams", "de Minecraft, Valorant y otros juegos, comparto novedades de mis proyectos y me dedico al": "of Minecraft, Valorant and other games, share news about my projects and work in", "desarrollo web": "web development", "y a la configuración de servidores con plugins, mods y diferentes herramientas.": "and in configuring servers with plugins, mods and different tools.", "Quiero seguir creciendo como creador y desarrollador, impulsar mis proyectos y formar una comunidad.": "I want to keep growing as a creator and developer, push my projects and build a community.", "Aún queda mucho por hacer, y espero que quienes me acompañan desde el principio y quienes apenas me descubren sean parte de lo que viene.": "There's still a lot to do, and I hope those who have been with me since the beginning and those who are just discovering me will be part of what's coming.","Menú": "Menu", "Canal sponsoreado por": "Channel sponsored by", "Mejora tu ping": "Improve your ping", "Mejora tu ping y boostea tus FPS": "Improve your ping and boost your FPS", "Mejora tu conexión en juegos como Valorant, Minecraft, Fortnite y más.": "Improve your connection in games like Valorant, Minecraft, Fortnite and more.", "Boostea tus FPS y mejora tu ping": "Boost your FPS and improve your ping", "Cerrar": "Close", "Sponsor NoPing": "NoPing sponsor", "Conocer NoPing": "Check out NoPing", "NoPing — Mejora tu ping": "NoPing — Improve your ping", "Trayectoria": "Journey", "Empecé en YouTube desde mi celular": "I started on YouTube from my phone", "Mi primera laptop con Minecraft 1.8": "My first laptop and Minecraft 1.8", "Llegó mi primera PC con Ryzen": "My first Ryzen PC arrived", "Fundé Team LMC": "I founded Team LMC", "Fundé LMC Studios": "I founded LMC Studios", "Mi sponsor": "My sponsor", "Me patrocina NoPing": "Sponsored by NoPing", "Desde el": "Since", "22 de noviembre de 2026": "November 22, 2026", "mi canal está patrocinado por": "my channel has been sponsored by", ". Boostea tus FPS, mejora tu ping y tu conexión en juegos como Valorant, Minecraft, Fortnite y más.": ". Boost your FPS, improve your ping and your connection in games like Valorant, Minecraft, Fortnite and more."},K='lmc-lang',R=document.documentElement,en=false,T=new WeakMap(),obs,b,A=['aria-label','alt','title','placeholder'];
+var SK=/^(SCRIPT|STYLE)$/;
+function n(s){return s.replace(/\s+/g,' ').trim()}
+function t(s){var k=n(s);if(!k)return s;var m=s.match(/^(\s*)[\s\S]*?(\s*)$/);
+if(D[k])return m[1]+D[k]+m[2];
+if(k.indexOf(' | ')>0)return k.split(' | ').map(function(x){return D[x]||x}).join(' | ');return s}
+function node(x){var o=T.get(x);if(o&&x.nodeValue===o.en)return;var e=t(x.nodeValue);if(e!==x.nodeValue){T.set(x,{es:x.nodeValue,en:e});x.nodeValue=e}}
+function attrs(el){if(!el.getAttribute)return;A.forEach(function(a){var v=el.getAttribute(a);if(!v)return;var o=el._o=el._o||{};if(o[a]&&o[a].en===v)return;var e=t(v);if(e!==v){o[a]={es:v,en:e};el.setAttribute(a,e)}})}
+function walk(r){if(r.nodeType===3){if(r.parentNode&&!SK.test(r.parentNode.nodeName))node(r);return}
+if(r.nodeType!==1||SK.test(r.nodeName))return;attrs(r);for(var c=r.firstChild;c;c=c.nextSibling)walk(c)}
+function undo(){var w=document.createTreeWalker(R,4),x,o;while(x=w.nextNode()){o=T.get(x);if(o&&x.nodeValue===o.en)x.nodeValue=o.es}
+document.querySelectorAll('*').forEach(function(el){if(!el._o)return;for(var a in el._o){if(el.getAttribute(a)===el._o[a].en)el.setAttribute(a,el._o[a].es)}})}
+function connect(){obs.observe(R,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:A})}
+obs=new MutationObserver(function(ms){obs.disconnect();ms.forEach(function(m){if(m.type==='characterData')walk(m.target);else if(m.type==='attributes')attrs(m.target);else m.addedNodes.forEach(walk)});if(en)connect()});
+function paint(){b.textContent=en?'ES':'EN';var l=en?'Cambiar a español':'Switch to English';b.setAttribute('aria-label',l);b.title=l}
+function set(on){en=on;R.lang=on?'en':'es';try{localStorage.setItem(K,on?'en':'es')}catch(e){}
+if(on){walk(R);connect()}else{obs.disconnect();undo()}if(window.__W&&TE){window.__W.splice.apply(window.__W,[0,window.__W.length].concat(on?TY:TE))}paint()}
+b=document.createElement('button');b.type='button';b.className='lang-btn';
+var vs=document.getElementById('visits');
+if(vs&&vs.parentNode){var w=document.createElement('div');w.className='rt';vs.parentNode.insertBefore(w,vs);w.appendChild(vs);w.appendChild(b)}else document.body.appendChild(b);
+var TY=['I create content and spend my time live.','I stream on Twitch and Kick.','I build Minecraft events and servers.','I develop custom websites.','Creating since 2020, from Mexico.'],TE=window.__W&&window.__W.slice();
+b.addEventListener('click',function(){set(!en)});
+var s=null;try{s=localStorage.getItem(K)}catch(e){}
+paint();if(s==='en')set(true);
+})();
+</script>
+<script>
+/* ============ NOPING + MENÚ MÓVIL ============ */
+(function(){
+/* Link de NoPing. Si lo dejas vacío, el banner se muestra sin enlace. */
+var NOPING_URL='https://nopi.ng/zansumi';
+
+/* banner: enlace, proporción real del video y reproducción solo cuando se ve */
+var H=document.documentElement,calm=matchMedia('(prefers-reduced-motion: reduce)').matches||H.classList.contains('lite');
+document.querySelectorAll('[data-sponsor]').forEach(function(a){
+    if(NOPING_URL){a.href=NOPING_URL;a.target='_blank';a.rel='noopener sponsored'}
+    else a.classList.add('nolink');
+});
+var vids=[].slice.call(document.querySelectorAll('.sp-media video'));
+vids.forEach(function(v){
+    var box=v.parentNode,card=v.closest('[data-sponsor]');
+    v.muted=true;
+    function ar(){if(v.videoWidth&&v.videoHeight)box.style.setProperty('--ar',v.videoWidth+'/'+v.videoHeight)}
+    v.addEventListener('loadedmetadata',ar);if(v.readyState>0)ar();
+    v.addEventListener('error',function(){card.classList.add('nomedia')});
+});
+function play(v){var p=v.play();if(p&&p.catch)p.catch(function(){})}
+if(!calm){
+    if('IntersectionObserver' in window){
+        var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)play(e.target);else e.target.pause()})},{threshold:.15});
+        vids.forEach(function(v){io.observe(v)});
+    }else vids.forEach(play);
+}
+
+/* insignia: se oculta en Sobre mí (ahí va el sponsor completo) y se puede cerrar */
+var bd=document.getElementById('spBadge'),bx=document.getElementById('spbX'),shut=false,curV='inicio';
+try{shut=sessionStorage.getItem('spb')==='1'}catch(e){}
+function paintB(){if(bd)bd.hidden=shut||curV==='sobre-mi'}
+if(bd){
+    document.addEventListener('viewchange',function(e){curV=e.detail;paintB()});
+    if(bx)bx.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();shut=true;try{sessionStorage.setItem('spb','1')}catch(x){}paintB()});
+    var cv=document.querySelector('#tabs [aria-current="page"]');if(cv)curV=cv.dataset.nav;
+    paintB();
+}
+
+/* menú hamburguesa en celular */
+var top=document.querySelector('.top'),btn=document.getElementById('menuBtn'),tabs=document.getElementById('tabs');
+if(!top||!btn||!tabs)return;
+function set(o){top.classList.toggle('menu-open',o);btn.setAttribute('aria-expanded',o?'true':'false')}
+btn.addEventListener('click',function(e){e.stopPropagation();set(!top.classList.contains('menu-open'))});
+tabs.addEventListener('click',function(e){if(e.target.closest('a'))set(false)});
+document.addEventListener('click',function(e){if(!top.contains(e.target))set(false)});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)});
+document.addEventListener('viewchange',function(){set(false)});
+addEventListener('resize',function(){if(innerWidth>860)set(false)});
+})();
+</script>
+</body>
+</html>

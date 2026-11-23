@@ -5,6 +5,7 @@
 <script>document.documentElement.classList.add('js');</script>
 <script>(function(){var n=navigator,c=n.connection||{},q=location.search;if(q.indexOf('full')<0&&(q.indexOf('lite')>-1||n.hardwareConcurrency<=2||n.deviceMemory<=2||c.saveData))document.documentElement.classList.add('lite')})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<base href="/">
 <title>Zansumi | Creador de contenido</title>
 <meta name="description" content="Creador de contenido. Hago streams, armo eventos de Minecraft y desarrollo servidores y páginas web.">
 <meta name="theme-color" content="#0d0e10">
@@ -15,12 +16,16 @@
 <meta property="og:title" content="Zansumi | Creador de contenido">
 <meta property="og:description" content="Creador de contenido | Desarrollo eventos en Minecraft, hago streams, videos y busco siempre mejorar..">
 <meta property="og:url" content="https://zansumi.github.io/">
-<meta property="og:image" content="https://zansumi.github.io/assets/banners/baner2.png">
+<meta property="og:image" content="https://zansumi.github.io/assets/banners/baner2.png?v=2">
+<meta property="og:image:secure_url" content="https://zansumi.github.io/assets/banners/baner2.png?v=2">
+<meta property="og:image:type" content="image/png">
 <meta property="og:image:alt" content="Banner de Zansumi">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Zansumi | Creador de contenido">
 <meta name="twitter:description" content="Creador de contenido | Desarrollo eventos en Minecraft, hago streams, videos y busco siempre mejorar..">
-<meta name="twitter:image" content="https://zansumi.github.io/assets/banners/baner2.png">
+<meta name="twitter:image" content="https://zansumi.github.io/assets/banners/baner2.png?v=2">
+<meta name="twitter:image:alt" content="Banner de Zansumi">
+<meta name="twitter:site" content="@zansum1">
 <link rel="icon" type="image/png" href="assets/avatars/logonwevo2.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -843,14 +848,14 @@ main{z-index:1}
 </div>
 
 <header class="top">
-    <a class="logo" href="#" data-nav="inicio"><img src="assets/avatars/logonwevo2.png" alt="">Zansumi</a>
+    <a class="logo" href="/" data-nav="inicio"><img src="assets/avatars/logonwevo2.png" alt="">Zansumi</a>
     <nav class="tabs" id="tabs" aria-label="Secciones">
-        <a href="#" data-nav="inicio">Inicio</a>
-        <a href="#sobre-mi" data-nav="sobre-mi">Sobre mí</a>
-        <a href="#proyectos" data-nav="proyectos">Proyectos</a>
-        <a href="#contenido" data-nav="contenido">Contenido</a>
-        <a href="#setup" data-nav="setup">Setup</a>
-        <a href="#contacto" data-nav="contacto">Contacto</a>
+        <a href="/" data-nav="inicio">Inicio</a>
+        <a href="/sobre-mi/" data-nav="sobre-mi">Sobre mí</a>
+        <a href="/proyectos/" data-nav="proyectos">Proyectos</a>
+        <a href="/contenido/" data-nav="contenido">Contenido</a>
+        <a href="/setup/" data-nav="setup">Setup</a>
+        <a href="/contacto/" data-nav="contacto">Contacto</a>
     </nav>
     <div class="visits" id="visits" title="Visitas totales de la página" aria-live="polite"><span class="dot"></span><span>Visitas</span><b id="visitsNum">--</b></div>
     <button class="menu-btn" id="menuBtn" type="button" aria-label="Menú" aria-expanded="false" aria-controls="tabs"><span></span><span></span><span></span></button>
@@ -866,8 +871,8 @@ main{z-index:1}
         <h1><span>ZAN</span><span class="ol">SUMI</span></h1>
         <p class="kick"><span id="typed">Creo contenido, eventos de Minecraft y más.</span><i class="caret" aria-hidden="true"></i></p>
         <div class="row">
-            <a class="btn solid" href="#proyectos" data-nav="proyectos">Ver proyectos</a>
-            <a class="btn" href="#contenido" data-nav="contenido">Ver contenido</a>
+            <a class="btn solid" href="/proyectos/" data-nav="proyectos">Ver proyectos</a>
+            <a class="btn" href="/contenido/" data-nav="contenido">Ver contenido</a>
         </div>
         <div class="socials">
             <a class="social" target="_blank" rel="noopener" href="https://x.com/zansum1" aria-label="X" title="X"><img src="assets/avatars/x.png" alt="X" data-f="X"></a>
@@ -911,7 +916,7 @@ main{z-index:1}
                 <div class="card about-id">
                     <img class="ava" src="assets/avatars/logonwevo2.png" alt="Logo de Zansumi">
                     <h2>Sobre mí — Zansumi</h2>
-                    <p>Soy Zansumi, creador de contenido de México, apasionado por los <a class="hl" href="#contenido" data-nav="contenido">videojuegos</a>, la tecnología y el desarrollo de proyectos digitales. Llevo años aprendiendo por mi cuenta y compartiendo mis ideas con mi comunidad; aunque a veces parezca que somos pocos, sé que ahí están. JAJA.</p>
+                    <p>Soy Zansumi, creador de contenido de México, apasionado por los <a class="hl" href="/contenido/" data-nav="contenido">videojuegos</a>, la tecnología y el desarrollo de proyectos digitales. Llevo años aprendiendo por mi cuenta y compartiendo mis ideas con mi comunidad; aunque a veces parezca que somos pocos, sé que ahí están. JAJA.</p>
                     <div class="chips"><span class="chip">Minecraft</span><span class="chip">Streams</span><span class="chip">Desarrollo web</span><span class="chip">Servidores</span><span class="chip">Hecho en México</span></div>
                 </div>
                 <a class="card sponsor compact" data-sponsor aria-label="NoPing — Mejora tu ping">
@@ -945,11 +950,11 @@ main{z-index:1}
                     </article>
                     <article class="card abt">
                         <h3>Mis proyectos</h3>
-                        <p>En <strong>septiembre de 2024</strong> fundé <a class="hl" href="https://x.com/team__lmc" target="_blank" rel="noopener">Team LMC ™</a> (<a class="hl" href="https://team-lmc-oficial.github.io/" target="_blank" rel="noopener">página oficial</a>), un equipo para creadores, videojuegos y proyectos comunitarios. El <strong>6 de noviembre de 2025</strong> fundé <a class="hl" href="https://x.com/lmcstudi0s" target="_blank" rel="noopener">LMC Studios ™</a> (<a class="hl" href="https://lmcstudios.art" target="_blank" rel="noopener">lmcstudios.art</a>), un estudio de <a class="hl" href="#proyectos" data-nav="proyectos">servidores y eventos de Minecraft</a>.</p>
+                        <p>En <strong>septiembre de 2024</strong> fundé <a class="hl" href="https://x.com/team__lmc" target="_blank" rel="noopener">Team LMC ™</a> (<a class="hl" href="https://team-lmc-oficial.github.io/" target="_blank" rel="noopener">página oficial</a>), un equipo para creadores, videojuegos y proyectos comunitarios. El <strong>6 de noviembre de 2025</strong> fundé <a class="hl" href="https://x.com/lmcstudi0s" target="_blank" rel="noopener">LMC Studios ™</a> (<a class="hl" href="https://lmcstudios.art" target="_blank" rel="noopener">lmcstudios.art</a>), un estudio de <a class="hl" href="/proyectos/" data-nav="proyectos">servidores y eventos de Minecraft</a>.</p>
                     </article>
                     <article class="card abt">
                         <h3>¿Qué hago ahora?</h3>
-                        <p>Hago <a class="hl" href="#contenido" data-nav="contenido">directos</a> de Minecraft, Valorant y otros juegos, comparto novedades de mis proyectos y me dedico al <a class="hl" href="#proyectos" data-nav="proyectos">desarrollo web</a> y a la configuración de servidores con plugins, mods y diferentes herramientas.</p>
+                        <p>Hago <a class="hl" href="/contenido/" data-nav="contenido">directos</a> de Minecraft, Valorant y otros juegos, comparto novedades de mis proyectos y me dedico al <a class="hl" href="/proyectos/" data-nav="proyectos">desarrollo web</a> y a la configuración de servidores con plugins, mods y diferentes herramientas.</p>
                     </article>
                     <article class="card abt">
                         <h3>Lo que viene</h3>
@@ -981,7 +986,7 @@ main{z-index:1}
                         <li>Tus colores, logo y textos</li>
                         <li>Publicada gratis en GitHub Pages</li>
                     </ul>
-                    <a class="btn solid" href="#contacto" data-nav="contacto">Pedir una comisión</a>
+                    <a class="btn solid" href="/contacto/" data-nav="contacto">Pedir una comisión</a>
                 </div>
             </div>
             <div class="sites">
@@ -1116,7 +1121,7 @@ main{z-index:1}
     <section class="panel nf" id="v-404" hidden>
         <div class="big">404</div>
         <div class="head"><h2>Esta página no existe</h2><p>Revisa la dirección o vuelve al inicio.</p></div>
-        <div class="row"><a class="btn solid" href="#" data-nav="inicio">Ir al inicio</a></div>
+        <div class="row"><a class="btn solid" href="/" data-nav="inicio">Ir al inicio</a></div>
     </section>
 </main>
 
@@ -1137,7 +1142,7 @@ main{z-index:1}
         <div class="pctl"><button id="plPlay">Play / Pausa</button><button id="plShuf">Mezclar</button></div></div></div><ol id="plist"></ol></div>
 </div>
 
-<a class="next" id="next" href="#sobre-mi" data-nav="sobre-mi" title="Siguiente"><span id="nextLbl">Siguiente</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+<a class="next" id="next" href="/sobre-mi/" data-nav="sobre-mi" title="Siguiente"><span id="nextLbl">Siguiente</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 
 <aside class="spbadge" id="spBadge" aria-label="Sponsor NoPing">
     <button class="spb-x" id="spbX" type="button" aria-label="Cerrar">×</button>
@@ -1152,7 +1157,7 @@ main{z-index:1}
     <div class="fact-k"><i></i><span>¿Sabías que…?</span><span id="factE"></span></div>
     <h4 id="factT"></h4>
     <p id="factP"></p>
-    <a class="btn solid" href="#sobre-mi" data-nav="sobre-mi">Ver más</a>
+    <a class="btn solid" href="/sobre-mi/" data-nav="sobre-mi">Ver más</a>
     <div class="fact-bar"></div>
 </aside>
 
@@ -1162,12 +1167,20 @@ main{z-index:1}
 /* ============ RUTAS LIMPIAS + PESTAÑAS ============ */
 (function(){
 var TITLES={inicio:'Zansumi | Creador de contenido','sobre-mi':'Sobre mí | Zansumi',proyectos:'Proyectos | Zansumi',contenido:'Contenido | Zansumi',setup:'Setup | Zansumi',contacto:'Contacto | Zansumi','404':'404 | Zansumi'};
+var SITE="https://zansumi.github.io";
+/*DD-START*/var DD={"inicio": {"t": "Zansumi | Creador de contenido", "d": "Creador de contenido. Hago streams, armo eventos de Minecraft y desarrollo servidores y páginas web."}, "sobre-mi": {"t": "Sobre mí | Zansumi", "d": "Soy Zansumi, creador de contenido de México apasionado por los videojuegos, la tecnología y el desarrollo de proyectos digitales. Conoce mi trayectoria."}, "proyectos": {"t": "Proyectos | Zansumi", "d": "Páginas web a medida y servidores de Minecraft. Portafolios y sitios desde $7–10 USD, publicados gratis en GitHub Pages."}, "contenido": {"t": "Contenido | Zansumi", "d": "Mis directos, videos y clips más recientes en Twitch, Kick, YouTube y TikTok."}, "setup": {"t": "Setup | Zansumi", "d": "Mi setup para crear contenido: PC con Ryzen 5 4600G y RX 580 de 8 GB, periféricos, monitores y micrófono."}, "contacto": {"t": "Contacto | Zansumi", "d": "¿Una comisión, una colaboración o solo saludar? Escríbeme por correo o Discord."}};/*DD-END*/
+function meta(k){var d=DD[k];if(!d)return;var u=SITE+urlOf(k),q=function(sel,v,a){var m=document.querySelector(sel);if(m)m.setAttribute(a||'content',v)};
+q('meta[name=description]',d.d);q('link[rel=canonical]',u,'href');
+q('meta[property="og:url"]',u);q('meta[property="og:title"]',d.t);q('meta[property="og:description"]',d.d);
+q('meta[name="twitter:title"]',d.t);q('meta[name="twitter:description"]',d.d)}
 var ORDER=['inicio','sobre-mi','proyectos','contenido','setup','contacto'];
 var NAMES={inicio:'Inicio','sobre-mi':'Sobre mí',proyectos:'Proyectos',contenido:'Contenido',setup:'Setup',contacto:'Contacto'};
 var view=document.getElementById('view'),cur='inicio',counted=false;
-function urlOf(k){return k==='inicio'?'#':'#'+k}
+function urlOf(k){return k==='inicio'?'/':'/'+k+'/'}
 function fromPath(){
-    var p=location.hash.replace(/^#\/?/,'').split('/')[0].toLowerCase();
+    var p=decodeURIComponent(location.pathname).toLowerCase().replace(/index\.html$/,'').replace(/^\/+|\/+$/g,'');
+    if(p===''){var h=location.hash.replace(/^#\/?/,'').split('/')[0].toLowerCase();if(h)p=h}/* enlaces viejos con # */
+    else p=p.split('/')[0];
     if(p==='historia')p='sobre-mi';
     if(p==='streams')p='contenido';
     if(p==='amigos')p='';
@@ -1191,7 +1204,7 @@ function _show(k){
     document.querySelectorAll('[data-nav]').forEach(function(a){
         if(a.closest('#tabs')){if(a.dataset.nav===k)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')}
     });
-    document.title=TITLES[k]||TITLES['404'];
+    document.title=TITLES[k]||TITLES['404'];meta(k);
     view.scrollTop=0;
     var panel=document.getElementById('v-'+k);
     panel.querySelectorAll('.tiles>*,.sites>*,.pricing>*,.trio>*,.vids>*,.lives>*,.tts>*,.cgrid>*').forEach(function(el,i){el.style.setProperty('--i',i)});
@@ -1213,7 +1226,7 @@ function show(k){
     busy=setTimeout(function(){old.classList.remove('leaving');_show(k)},190);
 }
 function go(k){
-    if(k==='inicio'){if(location.hash)location.hash=''}else location.hash=k;
+    var u=urlOf(k);if(location.pathname!==u)history.pushState(null,'',u);
     show(k);
 }
 document.addEventListener('click',function(e){
@@ -1221,11 +1234,13 @@ document.addEventListener('click',function(e){
     if(!a||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button)return;
     e.preventDefault();go(a.dataset.nav);
 });
-addEventListener('hashchange',function(){var k=fromPath();if(k!==cur)show(k)});
+addEventListener('popstate',function(){var k=fromPath();if(k!==cur)show(k)});
 addEventListener('resize',fit);
 /* los links de las pestañas apuntan a la ruta real (sin #) */
 document.querySelectorAll('a[data-nav]').forEach(function(a){a.setAttribute('href',urlOf(a.dataset.nav))});
-show(fromPath());
+/* limpia la URL: alias viejos (/historia, #proyectos) -> ruta real; una ruta que no existe se queda y muestra la 404 */
+var k0=fromPath();if(k0!=='404'&&(location.pathname!==urlOf(k0)||location.hash))history.replaceState(null,'',urlOf(k0));
+show(k0);
 })();
 
 /* ============ DETALLES ============ */
@@ -1468,7 +1483,7 @@ requestAnimationFrame(tick);
 (function(){
 var view=document.getElementById('view'),bar=document.getElementById('prog');
 function pr(){var m=view.scrollHeight-view.clientHeight;bar.style.setProperty('--p',m>0?Math.min(view.scrollTop/m,1):0)}
-view.addEventListener('scroll',pr,{passive:true});addEventListener('hashchange',function(){setTimeout(pr,60)});addEventListener('resize',pr);
+view.addEventListener('scroll',pr,{passive:true});document.addEventListener('viewchange',function(){setTimeout(pr,60)});addEventListener('resize',pr);
 document.addEventListener('click',function(){setTimeout(pr,90)});pr();
 document.querySelectorAll('.socials>*').forEach(function(a,i){a.style.setProperty('--k',i)});
 if(matchMedia('(hover:hover) and (pointer:fine)').matches){
