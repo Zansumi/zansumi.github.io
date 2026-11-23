@@ -15,7 +15,13 @@ e = lambda v: html.escape(v, quote=True)
 def page(n, title=None):
     d = DD[n]; t = title or d['t']; url = SITE + ('/' if n == 'inicio' else '/%s/' % n)
     h = src
+    og = SITE + '/assets/banners/og/%s.png?v=3' % n
     subs = [
+      (r'(<meta property="og:image" content=").*?(">)', og),
+      (r'(<meta property="og:image:secure_url" content=").*?(">)', og),
+      (r'(<meta name="twitter:image" content=").*?(">)', og),
+      (r'(<meta property="og:image:alt" content=").*?(">)', 'Zansumi · ' + e(d['n'].title() if n != 'inicio' else 'Creador de contenido')),
+      (r'(<meta name="twitter:image:alt" content=").*?(">)', 'Zansumi · ' + e(d['n'].title() if n != 'inicio' else 'Creador de contenido')),
       (r'<title>.*?</title>', '<title>%s</title>' % e(t)),
       (r'(<meta name="description" content=").*?(">)', e(d['d'])),
       (r'(<link rel="canonical" href=").*?(">)', url),

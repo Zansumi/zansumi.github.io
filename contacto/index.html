@@ -16,15 +16,17 @@
 <meta property="og:title" content="Contacto | Zansumi">
 <meta property="og:description" content="¿Una comisión, una colaboración o solo saludar? Escríbeme por correo o Discord.">
 <meta property="og:url" content="https://zansumi.github.io/contacto/">
-<meta property="og:image" content="https://zansumi.github.io/assets/banners/baner2.png?v=2">
-<meta property="og:image:secure_url" content="https://zansumi.github.io/assets/banners/baner2.png?v=2">
+<meta property="og:image" content="https://zansumi.github.io/assets/banners/og/contacto.png?v=3">
+<meta property="og:image:secure_url" content="https://zansumi.github.io/assets/banners/og/contacto.png?v=3">
 <meta property="og:image:type" content="image/png">
-<meta property="og:image:alt" content="Banner de Zansumi">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Zansumi · Contacto">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Contacto | Zansumi">
 <meta name="twitter:description" content="¿Una comisión, una colaboración o solo saludar? Escríbeme por correo o Discord.">
-<meta name="twitter:image" content="https://zansumi.github.io/assets/banners/baner2.png?v=2">
-<meta name="twitter:image:alt" content="Banner de Zansumi">
+<meta name="twitter:image" content="https://zansumi.github.io/assets/banners/og/contacto.png?v=3">
+<meta name="twitter:image:alt" content="Zansumi · Contacto">
 <meta name="twitter:site" content="@zansum1">
 <link rel="icon" type="image/png" href="assets/avatars/logonwevo2.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -265,8 +267,6 @@ a.card:hover{border-color:var(--red);box-shadow:0 0 0 1px var(--red),0 0 24px rg
 .nf .big{font-family:var(--display);font-weight:800;font-size:clamp(5rem,20vw,11rem);line-height:.9;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:3px var(--red)}
 
 /* ============ ENTRADA ============ */
-#trans{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:500;pointer-events:none;opacity:0;visibility:hidden;transition:opacity .12s}
-#trans.on{opacity:1;visibility:visible}
 .enter{display:none;position:fixed;inset:0;z-index:1000;place-items:center;text-align:center;padding:24px;cursor:pointer;background:rgba(13,14,16,.7);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);transition:opacity .8s}
 .js .enter{display:grid}
 .enter span{font-family:var(--display);font-weight:700;font-size:clamp(1.1rem,3vw,1.5rem);animation:breathe 2.6s ease-in-out infinite}
@@ -839,6 +839,56 @@ main{z-index:1}
     .spb-t{padding:8px 34px 9px 12px}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* ============ TRANSICION CON LOGO (lenta y minimalista) ============ */
+#trans{position:fixed;inset:0;z-index:500;display:grid;place-items:center;background:#08090a;pointer-events:none;opacity:0;visibility:hidden;transition:opacity .8s ease,visibility 0s .8s}
+#trans.on{opacity:1;visibility:visible;transition:opacity .7s ease,visibility 0s}
+#trans img{width:84px;height:84px;border-radius:50%;object-fit:cover;border:1px solid rgba(199,204,210,.22);opacity:0;transform:scale(.94);transition:opacity .6s ease,transform .8s var(--ease)}
+#trans.on img{opacity:1;transform:scale(1);transition:opacity 1s ease .3s,transform 1.6s var(--ease) .3s}
+
+/* ============ MAS MINIMALISTA ============ */
+.stage .orb,.marquee,.shot::after{display:none!important}
+.stage>img{opacity:.2}.stage .vid.on{opacity:.24}
+@keyframes fadein{from{opacity:0}}
+.panel.show{animation:fadein .7s ease}
+.panel.show :is(.tiles,.sites,.pricing,.trio,.vids,.lives,.tts,.cgrid)>*{animation:fadein .7s ease both;animation-delay:calc(var(--i,0)*35ms)}
+.panel{gap:30px}
+/* barra superior */
+.top{background:rgba(8,9,10,.6);border-bottom-color:rgba(255,255,255,.05)}
+.tabs a{color:var(--ash);font-weight:400}
+.tabs a:hover{background:none;color:#fff}
+.tabs a[aria-current="page"]{background:none;color:#fff}
+.tab-ind{background:transparent;box-shadow:none}
+.visits{border-color:transparent;background:none;color:var(--ash)}
+/* inicio */
+.hero .ava{animation:none;box-shadow:none;border-color:rgba(199,204,210,.25)}
+.hero h1{font-weight:700}
+.hero h1 span:first-child{animation:none;background:none;color:#fff;-webkit-text-fill-color:#fff}
+.hero .kick{color:var(--ash);font-weight:400}
+.counter strong{background:none;color:#fff;-webkit-text-fill-color:#fff;font-weight:600}
+.counter>span{color:var(--ash)}
+.social{background:none;border-color:rgba(255,255,255,.07)}
+.social:hover{background:none;transform:none;border-color:rgba(199,204,210,.4)}
+/* tarjetas y secciones */
+.card{background:rgba(255,255,255,.02);border-color:rgba(255,255,255,.07);border-radius:14px}
+.card.story{background:rgba(255,255,255,.02);backdrop-filter:none;-webkit-backdrop-filter:none}
+a.card:hover,.proj:hover{background:rgba(255,255,255,.035);border-color:rgba(199,204,210,.28);box-shadow:none;transform:none}
+.cap{letter-spacing:.2em;font-weight:500;color:#6f747b}
+.cap::before,.cap::after{background:rgba(255,255,255,.05)}
+.head h2{font-weight:600}
+.head p{color:#7d838a}
+.chip{background:none;border-color:rgba(255,255,255,.1);color:var(--soft)}
+.chip.pop,.new{background:none;border:1px solid var(--crimson);color:#e6b8bb}
+.hl{background:none;border-bottom:1px solid rgba(179,38,45,.8)}.hl:hover{background:none;border-bottom-color:var(--red)}
+.friend:hover img{transform:none}
+.price{border-color:rgba(255,255,255,.1)!important}
+/* botones */
+.btn{border-color:rgba(199,204,210,.2)}
+.btn:hover,.btn:active{transform:none;background:rgba(255,255,255,.04)}
+.btn.solid{background:transparent;border-color:var(--crimson);color:#fff}
+.btn.solid::after{display:none}
+.btn.solid:hover{background:var(--crimson);border-color:var(--crimson);box-shadow:none}
+.player,.next{background:rgba(8,9,10,.7)}
 </style>
 <link rel="preconnect" href="https://abacus.jasoncameron.dev" crossorigin>
 </head>
@@ -1128,7 +1178,7 @@ main{z-index:1}
     </section>
 </main>
 
-<video id="trans" muted playsinline preload="auto" aria-hidden="true" tabindex="-1"></video>
+<div id="trans" aria-hidden="true"><img src="assets/avatars/logonwevo2.png" alt=""></div>
 <div class="enter" id="enter" role="button" tabindex="0" aria-label="Click to enter"><span>click to enter...</span></div>
 
 <div class="player" id="player">
@@ -1172,7 +1222,7 @@ main{z-index:1}
 (function(){
 var TITLES={inicio:'Zansumi | Creador de contenido','sobre-mi':'Sobre mí | Zansumi',proyectos:'Proyectos | Zansumi',contenido:'Contenido | Zansumi',setup:'Setup | Zansumi',contacto:'Contacto | Zansumi','404':'404 | Zansumi'};
 var SITE="https://zansumi.github.io";
-/*DD-START*/var DD={"inicio": {"t": "Zansumi | Creador de contenido", "d": "Creador de contenido. Hago streams, armo eventos de Minecraft y desarrollo servidores y páginas web."}, "sobre-mi": {"t": "Sobre mí | Zansumi", "d": "Soy Zansumi, creador de contenido de México apasionado por los videojuegos, la tecnología y el desarrollo de proyectos digitales. Conoce mi trayectoria."}, "proyectos": {"t": "Proyectos | Zansumi", "d": "Páginas web a medida y servidores de Minecraft. Portafolios y sitios desde $7–10 USD, publicados gratis en GitHub Pages."}, "contenido": {"t": "Contenido | Zansumi", "d": "Mis directos, videos y clips más recientes en Twitch, Kick, YouTube y TikTok."}, "setup": {"t": "Setup | Zansumi", "d": "Mi setup para crear contenido: PC con Ryzen 5 4600G y RX 580 de 8 GB, periféricos, monitores y micrófono."}, "contacto": {"t": "Contacto | Zansumi", "d": "¿Una comisión, una colaboración o solo saludar? Escríbeme por correo o Discord."}};/*DD-END*/
+/*DD-START*/var DD={"inicio": {"t": "Zansumi | Creador de contenido", "d": "Creador de contenido. Hago streams, armo eventos de Minecraft y desarrollo servidores y páginas web.", "n": "INICIO"}, "sobre-mi": {"t": "Sobre mí | Zansumi", "d": "Soy Zansumi, creador de contenido de México apasionado por los videojuegos, la tecnología y el desarrollo de proyectos digitales. Conoce mi trayectoria.", "n": "SOBRE MÍ"}, "proyectos": {"t": "Proyectos | Zansumi", "d": "Páginas web a medida y servidores de Minecraft. Portafolios y sitios desde $7–10 USD, publicados gratis en GitHub Pages.", "n": "PROYECTOS"}, "contenido": {"t": "Contenido | Zansumi", "d": "Mis directos, videos y clips más recientes en Twitch, Kick, YouTube y TikTok.", "n": "CONTENIDO"}, "setup": {"t": "Setup | Zansumi", "d": "Mi setup para crear contenido: PC con Ryzen 5 4600G y RX 580 de 8 GB, periféricos, monitores y micrófono.", "n": "SETUP"}, "contacto": {"t": "Contacto | Zansumi", "d": "¿Una comisión, una colaboración o solo saludar? Escríbeme por correo o Discord.", "n": "CONTACTO"}};/*DD-END*/
 function meta(k){var d=DD[k];if(!d)return;var u=SITE+urlOf(k),q=function(sel,v,a){var m=document.querySelector(sel);if(m)m.setAttribute(a||'content',v)};
 q('meta[name=description]',d.d);q('link[rel=canonical]',u,'href');
 q('meta[property="og:url"]',u);q('meta[property="og:title"]',d.t);q('meta[property="og:description"]',d.d);
@@ -1222,29 +1272,16 @@ function _show(k){
     document.dispatchEvent(new CustomEvent('viewchange',{detail:k}));
 }
 var first=true,busy,topbar=document.querySelector('.top');
-/* transicion con video (assets/trasision.webm): se cambia la seccion a la mitad del video.
-   TRATE = velocidad (1 = normal; 1.5 = un poco mas rapida; 2 = el doble). En modo lite o con movimiento reducido no se usa. */
-var TRATE=1.5,tv=document.getElementById('trans'),tvBusy=false,tvTarget=null;
-if(tv&&!document.documentElement.classList.contains('lite')){
-    tv.addEventListener('error',function(){tv.removeAttribute('src')});
-    addEventListener('load',function(){tv.src='assets/trasision.webm';tv.load()},{once:true});
-}
-function tvOK(){return tv&&tv.getAttribute('src')&&!tv.error&&tv.readyState>=3&&tv.duration>0&&!document.documentElement.classList.contains('lite')}
+/* transicion minimalista: pantalla oscura + tu logo, lenta y suave. La seccion cambia con el logo visible.
+   Tiempos en ms (editalos aqui): T_SWAP = cuando cambia la seccion, T_OUT = cuando empieza a salir, T_END = fin. */
+var T_SWAP=900,T_OUT=1300,T_END=2100,tv=document.getElementById('trans'),tvBusy=false,tvTarget=null;
+function tvOK(){return !!tv&&!document.documentElement.classList.contains('lite')}
 function vtrans(k,old){
-    tvBusy=true;tvTarget=k;var swapped=false,done=false;
-    topbar.classList.remove('go');void topbar.offsetWidth;topbar.classList.add('go');
-    function swap(){if(swapped)return;swapped=true;old.classList.remove('leaving');_show(tvTarget)}
-    function end(){
-        if(done)return;done=true;swap();tv.classList.remove('on');
-        setTimeout(function(){tv.pause();tvBusy=false;var n=fromPath();if(n!==cur)show(n)},130);
-    }
-    function tick(){if(done)return;if(tv.currentTime>=tv.duration*.5)swap();if(tv.ended)end();else requestAnimationFrame(tick)}
-    tv.pause();tv.currentTime=0;tv.playbackRate=TRATE;tv.classList.add('on');
-    var p=tv.play();
-    if(p&&p.catch)p.catch(function(){end()});
-    tv.addEventListener('ended',end,{once:true});
-    requestAnimationFrame(tick);
-    setTimeout(end,Math.min(5000,tv.duration/TRATE*1000+800));/* por si el video se atora */
+    tvBusy=true;tvTarget=k;
+    tv.classList.add('on');
+    setTimeout(function(){old.classList.remove('leaving');_show(tvTarget)},T_SWAP);
+    setTimeout(function(){tv.classList.remove('on')},T_OUT);
+    setTimeout(function(){tvBusy=false;var n=fromPath();if(n!==cur)show(n)},T_END);
 }
 function show(k){
     var old=document.querySelector('.panel.show');
